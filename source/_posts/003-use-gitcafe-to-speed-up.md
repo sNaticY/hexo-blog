@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Octopress折腾之路(3)-使用gitcafe提高octopress访问速度"
+title: "Octopress(3)-使用gitcafe提高访问速度"
 date: 2014-08-13 10:14
 categories: Octopress折腾之路
 tags: [octopress, github, gitcafe]
 ---
 
-在大家学习了上一篇博客『[自定义你的octopress博客](http://snatic.tk/blog/2014/08/12/customize-your-octopress-blog/)』，那么大家会发现其实使用 GitHub Pages 访问速度并不是那么理想。今天发现了一个酷似 GitHub 的国内站点叫 "[Gitcafe](http://gitcafe.com)"，访问速度自然比 github 要快得多。而且 gitcafe 也提供了 gitcafe pages 可用于搭建 octopress 博客。那么我们如何同时使用 gitcafe 和 github托管我们的博客呢？
+在大家学习了上一篇博客『[自定义你的octopress博客](http://snatix.com/2014/08/12/002-customize-your-octopress-blog/)』，那么大家会发现其实使用 GitHub Pages 访问速度并不是那么理想。今天发现了一个酷似 GitHub 的国内站点叫 "[Gitcafe](http://gitcafe.com)"，访问速度自然比 github 要快得多。而且 gitcafe 也提供了 gitcafe pages 可用于搭建 octopress 博客。那么我们如何同时使用 gitcafe 和 github托管我们的博客呢？
 
 <!--more-->
 
@@ -113,7 +113,7 @@ cd "#{deploy_dir}" do
   fetch = +refs/heads/*:refs/remotes/origin/*
 ```
 
-完成以后就可以还像博主的[第一篇博文](http://snatic.tk/blog/2014/08/09/how-to-create-octopress-blog/)里介绍的那样通过下面三条指令把博客的 octopress 源代码 push 到两个代码仓库进行版本管理了。（貌似也没什么必要的样子）
+完成以后就可以还像博主的[第一篇博文](http://snatix.com/2014/08/09/001-how-to-create-octopress-blog/)里介绍的那样通过下面三条指令把博客的 octopress 源代码 push 到两个代码仓库进行版本管理了。（貌似也没什么必要的样子）
 
 ``` bash
 git add .  #注意add后面的空格和点
@@ -141,6 +141,6 @@ git push origin source
 
 ---
 
-原文链接：http://snatix.com/2014/08/13/003-use-gitcafe-tospeed-up-your-octopress/
+原文链接：http://snatix.com/2014/08/13/003-use-gitcafe-to-speed-up/
 
 本文由 sNatic 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Octopress折腾之路(1)-在github上搭建octopress博客"
+title: "Octopress(1)-在github上搭建octopress博客"
 date: 2014-08-09 12:34
 categories: Octopress折腾之路
 tags: [octopress, github, Ubuntu]

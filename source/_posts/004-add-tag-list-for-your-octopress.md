@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Octopress折腾之路(4)-为octopress博客添加更多功能"
+title: "Octopress(4)-为octopress博客添加更多功能"
 date: 2014-08-15 19:39
 categories: Octopress折腾之路
 tags: [octopress]
 ---
 
-在本系列的第二篇『[自定义你的octopress博客](http://snatic.tk/blog/2014/08/12/customize-your-octopress-blog/)』中我们为 octopress 做了一些自定义。但是博主发现如果没有标签系统来管理博文，仅仅依靠 categories 是远远不够的。所以这次我们来试试为 octopress 添加标签系统，顺便为博客做一些SEO让搜索引擎更容易的收录到我们的页面。最后优化以下rakefile以减少不必要的劳力。那么
+在本系列的第二篇『[自定义你的octopress博客](http://snatix.com/2014/08/12/002-customize-your-octopress-blog/)』中我们为 octopress 做了一些自定义。但是博主发现如果没有标签系统来管理博文，仅仅依靠 categories 是远远不够的。所以这次我们来试试为 octopress 添加标签系统，顺便为博客做一些SEO让搜索引擎更容易的收录到我们的页面。最后优化以下rakefile以减少不必要的劳力。那么
 
 <!--more-->
 
@@ -57,7 +57,7 @@ tag_dir: blog/tags
 
 ``` yaml
 layout: post
-title: "Octopress折腾之路(4)-为octopress博客添加更多功能"
+title: "Octopress(4)-为octopress博客添加更多功能"
 date: 2014-08-15 19:39
 comments: true
 categories: Octopress折腾之路

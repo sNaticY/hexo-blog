@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Git探索之路(2)-.gitignore和git分支的使用"
+title: "探索Git(2)-gitignore和branch的使用"
 date: 2014-08-23 19:41
 categories: git探索之路
 tags: [git, windows, github]
 ---
 
-在上一篇博客『[Git探索之路(1)-git初体验之git Shell](http://http://www.snatic.tk/blog/2014/08/21/start-by-git-shell/)』中。我们探索了一些 git 的基本操作比如 git 初始化、追踪文件、加入暂存区、提交、比较、查看提交记录以及很暴力的回滚项目。那么 git 的精髓『分支』该如何使用呢？在此之前我们可能还注意到上次的工作目录太『不干净』了每次使用`git status`命令总会输出一大堆"untracked files"很影响心情。怎样才能彻底忽略掉那一大堆不需要跟踪的自动生成的文件呢？
+在上一篇博客『[初体验之git Shell](http://snatix.com/2014/08/21/005-start-by-git-shell/)』中。我们探索了一些 git 的基本操作比如 git 初始化、追踪文件、加入暂存区、提交、比较、查看提交记录以及很暴力的回滚项目。那么 git 的精髓『分支』该如何使用呢？在此之前我们可能还注意到上次的工作目录太『不干净』了每次使用`git status`命令总会输出一大堆"untracked files"很影响心情。怎样才能彻底忽略掉那一大堆不需要跟踪的自动生成的文件呢？
 
 <!--more-->
 

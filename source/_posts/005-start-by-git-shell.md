@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Git探索之路(1)-git初体验之git shell"
+title: "探索Git(1)-初体验之git shell"
 date: 2014-08-21 14:55
 categories: git探索之路
 tags: [git, windows, github]

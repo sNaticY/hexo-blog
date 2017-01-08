@@ -1,5 +1,5 @@
 ---
-title: Hexo博客重启计划(1) - 在Mac上安装Hexo
+title: 重启Hexo(1)-在Mac上安装Hexo
 date: 2017-01-08 17:40:20
 tags: [hexo, mac, coding]
 categories: Hexo博客重启计划

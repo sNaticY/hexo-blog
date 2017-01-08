@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Octopress折腾之路(2)-自定义你的octopress博客"
+title: "Octopress(2)-自定义你的octopress博客"
 date: 2014-08-12 15:40
 categories: Octopress折腾之路
 tags: [octopress]
 ---
 
-在上一篇博客『[在github上搭建octopress博客](http://snatic.tk/blog/2014/08/09/how-to-create-octopress-blog/)』中讲到了如何在ubuntu环境下搭建octopress博客系统并装载到github上。那么相信大家都和我一样并不能满足于默认主题默认模板的博客。那么如何对我们的octopress博客进行定制呢？
+在上一篇博客『[在github上搭建octopress博客](http://snatix.com/2014/08/09/001-how-to-create-octopress-blog/)』中讲到了如何在ubuntu环境下搭建octopress博客系统并装载到github上。那么相信大家都和我一样并不能满足于默认主题默认模板的博客。那么如何对我们的octopress博客进行定制呢？
 
 <!--more-->
 
