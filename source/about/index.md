@@ -1,6 +1,8 @@
 ---
-title: about
+title: 关于没什么存在感的我
 date: 2017-01-14 15:02:03
+thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011411.jpg
+
 ---
 
 写自我介绍什么的果然很羞耻而且很麻烦。。。

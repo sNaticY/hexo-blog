@@ -4,7 +4,7 @@ date: 2017-01-14 12:19:49
 tags: [hexo, mac, blog]
 categories: Hexo博客重启计划
 thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011409.jpg
-thumbnail_height: 489px
+
 ---
 
 在上一篇文章「[在Mac上安装Hexo](http://snatix.com/2017/01/08/007-install-hexo-on-mac/)」中介绍了如何在 mac 搭建 Hexo 博客环境并部署到 coding.net 上，那么接下来的任务就是针对目前白纸一张的博客进行一些自定义让它变得更好用吧～我们的目标是基于 [Material](https://material.viosey.com/) 主题完成「标签云」「评论系统」以及「友情链接」并探索一些其他的小功能。
