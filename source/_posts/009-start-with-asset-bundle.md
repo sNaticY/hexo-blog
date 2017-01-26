@@ -187,7 +187,7 @@ IEnumerator LoadDependenciesAndPrefab()
 
 ## PART 5 总结
 
-这一篇写的非常基础也非常水，其实这也算是博主自己探索 Assetbundle 的过程的一个笔记～希望可以对像博主一样完全初次接触 Assetbundle 的同学有帮助。接下来就要随着学习的进行一步一步的构建我们的插件，希望最终可以实现配置好路径就可以完成自动设置 Assetbundle Name，生成和上传 Assetbundle，下载和加载资源等等操作而不需要过多的关注这些细节。不知道最终多久可以完成，希望不会太久远～加油！
+这一篇写的非常基础也非常水，其实这也算是博主自己探索 Assetbundle 的过程的一个笔记～希望可以对像博主一样完全初次接触 Assetbundle 的同学有帮助。文章配套的工程已经放在博主的 [github](https://github.com/sNaticY/unity-asset-manager) 了。接下来就要随着学习的进行一步一步的构建我们的插件，希望最终可以实现配置好路径就可以完成自动设置 Assetbundle Name，生成和上传 Assetbundle，下载和加载资源等等操作而不需要过多的关注这些细节。不知道最终多久可以完成，希望不会太久远～加油！
 
 ---
 
