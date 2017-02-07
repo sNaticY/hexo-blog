@@ -1,7 +1,7 @@
 ---
 title: Assetbundle(2)-学习Assetbundle Manager
 date: 2017-01-29 15:02:53
-tags: [assetBundle， unity]
+tags: [assetBundle, unity]
 categories: Unity通用框架工程
 
 ---
