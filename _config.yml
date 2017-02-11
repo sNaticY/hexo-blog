@@ -80,3 +80,9 @@ feed:
 # Analytics
 google_analytics:
 baidu_analytics: 
+
+# Donate
+donate:
+  text: 是的，打赏功能已经加好了。大家试试能不能给我转钱～
+  wechat: http://ojgpkbakj.bkt.clouddn.com/WechatImage.png
+  alipay: http://ojgpkbakj.bkt.clouddn.com/AlipayImage.png

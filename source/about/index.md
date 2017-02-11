@@ -2,6 +2,7 @@
 title: 关于没什么存在感的我
 date: 2017-01-14 15:02:03
 thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011411.jpg
+donate: true
 
 ---
 
@@ -20,3 +21,5 @@ thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011411.jpg
 关于我：『[Instagram](https://www.instagram.com/snaticx/)』『[github](https://github.com/sNaticY)』『[zhihu](https://www.zhihu.com/people/liu-yan-44-87)』这应该就是我的全部了~是的打开看以后发现什么鬼都没有。。
 
 等我更 Diao 的时候再写什么自我介绍吧。。。
+
+---
