@@ -1,7 +1,7 @@
 ---
 title: Assetbundle(1)-初次接触
 date: 2017-01-15 15:01:25
-tags: [assetBundle, unity]
+tags: [asset bundle, unity]
 categories: Unity通用框架工程
 
 ---
