@@ -69,7 +69,7 @@ theme: material
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://git.coding.net/sNatic/snatic.git
+  repository: https://github.com/sNaticY/blog.git
   branch: master
 
 feed:
