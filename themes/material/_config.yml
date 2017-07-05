@@ -87,7 +87,7 @@ img:
 #       When you configured 'use' as 'custom', you should fill in the value of 'custom_font_host', which should be a mirror of google fonts.
 fonts:
     family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif
-    use: google
+    use: baomitu
     custom_font_host:
 
 # Card Elevation Level
@@ -217,8 +217,8 @@ search:
 # Available value:
 #     baidu | google | cnzz
 analytics:
-    use:
-    site_id:
+    use: cnzz
+    site_id: 1262667793
 
 # Leancloud Views
 leancloud:
