@@ -173,6 +173,9 @@ sidebar:
         友情链接: 
             link: "/links"
             icon: touch_app
+        时间轴:
+            link: "/timeline"
+            icon: event_node
     article_num:
         use: false
         divider: false
