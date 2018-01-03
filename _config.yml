@@ -39,7 +39,7 @@ relative_link: false
 future: true
 highlight:
   enable: false
-  line_number: true
+  line_number: false
   auto_detect: true
   tab_replace:
 
@@ -92,4 +92,4 @@ donate:
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'default'
-  line_number: true    # default false
+  line_number: false    # default false
