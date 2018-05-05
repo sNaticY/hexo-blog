@@ -1,0 +1,36 @@
+# 使用语言
+language: node_js
+
+# node版本
+node_js: stable
+
+# 设置只监听哪个分支
+branches:
+  only:
+  - master
+
+# tarvis生命周期执行顺序详见官网文档
+before_install:
+- git config --global user.name "sNaticY"
+- git config --global user.email "snatic0@126.com"
+
+# 由于使用了yarn，所以需要下载，如不用yarn这两行可以删除
+- npm install -g hexo-cli
+
+install:
+# 不用yarn的话这里改成 npm i 即可
+- npm i
+
+script:
+- hexo clean
+- hexo generate
+
+after_success:
+- cd ./public
+- git init
+- git add --all .
+- git commit -m "Travis CI Auto Builder"
+
+# 这里的 REPO_TOKEN 即之前在 travis 项目的环境变量里添加的
+- git push --quiet --force https://$REPO_TOKEN@github.com/sNaticY/blog.git
+  master
