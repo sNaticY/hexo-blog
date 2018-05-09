@@ -11,11 +11,15 @@ categories: 快节奏多人游戏同步
 
 [Client-Server Game Architecture](http://www.gabrielgambetta.com/client-server-game-architecture.html) · [Client-Side Prediction and Server Reconciliation](http://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html) · [Entity Interpolation](http://www.gabrielgambetta.com/entity-interpolation.html) · [Lag Compensation](http://www.gabrielgambetta.com/lag-compensation.html) · [Live Demo](http://www.gabrielgambetta.com/client-side-prediction-live-demo.html)
 
-## Introduction
+## Introduction 概述
 
 In the [first article](http://www.gabrielgambetta.com/client-server-game-architecture.html) of this series, we explored a client-server model with an authoritative server and dumb clients that just send inputs to the server and then render the updated game state when the server sends it.
 
+在本系列的第一篇文章中，我们讨论了简单的权威服务器和傀儡客户端模型，即客户端发送输入到服务器，由服务器更新游戏状态后返回给客户端，最后再由客户端渲染的流程。
+
 A naive implementation of this scheme leads to a delay between user commands and changes on the screen; for example, the player presses the right arrow key, and the character takes half a second before it starts moving. This is because the client input must first travel to the server, the server must process the input and calculate a new game state, and the updated game state must reach the client again.
+
+该可能会流程导致用户输入和最终屏幕显示之间的延迟，例如玩家按下向右按键后半秒角色才开始移动，这是因为客户端的输入必须先发送到服务器并由服务器计算游戏状态并将结果发回客户端而导致的延迟。
 
 ![Effect of network delays.](http://www.gabrielgambetta.com/img/fpm2-01.png)Effect of network delays.
 
