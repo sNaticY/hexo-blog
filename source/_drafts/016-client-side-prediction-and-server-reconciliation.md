@@ -25,9 +25,13 @@ A naive implementation of this scheme leads to a delay between user commands and
 
 In a networked environment such as the internet, where delays can be in the orders of tenths of a second, a game may feel unresponsive at best, or in the worst case, be rendered unplayable. In this article, we’ll find ways to minimize or even eliminate that problem.
 
-## Client-side prediction
+在非局域网环境下，延迟可能达到1/10秒，可能会导致游戏响应不够灵敏，最坏的情况可能导致基本玩不了。。在本文中，我们会找到减轻症状甚至解决这个问题的方案。
+
+## Client-side prediction 客户端预测
 
 Even though there are some cheating players, most of the time the game server is processing valid requests (from non-cheating clients and from cheating clients who aren’t cheating at that particular time). This means most of the input received will be valid and will update the game state as expected; that is, if your character is at (10, 10) and the right arrow key is pressed, it will end up at (11, 10).
+
+纵使有一些作弊的玩家，但大多数情况下服务器都是在处理合法请求（包括非作弊玩家的请求和某些未在特定情况下作弊的客户端的请求）这意味着大多数输入将会是合法且游戏状态完全可预测。也就是说，如果你的角色在(10,10)位置，当按下向右按键时，该角色将会移动到(11,10)。
 
 We can use this to our advantage. If the game world is *deterministic* enough (that is, given a game state and a set of inputs, the result is completely predictable),
 
