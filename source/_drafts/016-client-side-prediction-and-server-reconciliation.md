@@ -35,37 +35,61 @@ Even though there are some cheating players, most of the time the game server is
 
 We can use this to our advantage. If the game world is *deterministic* enough (that is, given a game state and a set of inputs, the result is completely predictable),
 
+如果游戏世界可预测性足够强（也就是说，一个给定的游戏状态加上一组输入，将可以得到固定的结果）的话，我们可以尝试利用这一点。首先假设我们的延迟是100ms，并且由一个格子移动到下一个格子的动画需要播放100ms，那么在最原始的实现中，整个角色的动作将延迟200ms
+
 Let’s suppose we have a 100 ms lag, and the animation of the character moving from one square to the next takes 100 ms. Using the naive implementation, the whole action would take 200 ms:
+
+因为游戏世界时可预测的，因此我们可以认为发到服务器的指令将会被立即执行，在这种情况下，客户端就可以预测输入执行以后的游戏状态了，而且大多数情况下这个预测都是基本正确的。
 
 ![Network delay + animation.](http://www.gabrielgambetta.com/img/fpm2-02.png)Network delay + animation.
 
 Since the world is deterministic, we can assume the inputs we send to the server will be executed successfully. Under this assumption, the client can predict the state of the game world after the inputs are processed, and most of the time this will be correct.
 
+因此我们可以发送输入后在等待服务器返回的同时立刻渲染输入执行成功后的结果，而不是傻等着服务器返回结果后再进行渲染。这样大多数情况下客户端自行计算的结果基本上是与服务器的返回相匹配的。
+
 Instead of sending the inputs and waiting for the new game state to start rendering it, we can send the input and start rendering the outcome of that inputs as if they had succeded, while we wait for the server to send the “true” game state – which more often than not, will match the state calculated locally :
 
 ![Animation plays while the server confirms the action.](http://www.gabrielgambetta.com/img/fpm2-03.png)Animation plays while the server confirms the action.
 
+所以现在在玩家输入与屏幕渲染之间完全没有延迟了，而且游戏服务器依然是权威服务器。因为当被破解的客户端发送无效请求时虽然会在自己的屏幕上显示出来，但并不会影响到其他玩家。
+
 Now there’s absolutely no delay between the player’s actions and the results on the screen, while the server is still authoritative (if a hacked client would send invalid inputs, it could render whatever it wanted on the screen, but it wouldn’t affect the state of the server, which is what the other players see).
 
-## Synchronization issues
+
+
+## Synchronization issues 同步问题
 
 In the example above, I chose the numbers carefully to make everything work fine. However, consider a slightly modified scenario: let’s say we have a 250 ms lag to the server, and moving from a square to the next takes 100 ms. Let’s also say the player presses the right key 2 times in a row, trying to move 2 squares to the right.
 
+在上面的例子中，我们刚好选了一个可以让一切正常运行的数值，然而稍微考虑一下以下场景，客户端到服务器的延迟是250ms，但是从一个格子移动到另一个格子只需要100ms，并且玩家尝试两次按下向右按键并向右移动两格。
+
 Using the techniques so far, this is what would happen:
 
+按照目前的实现，我们将看到如下状况。
+
 ![Predicted state and authoritative state mismatch.](http://www.gabrielgambetta.com/img/fpm2-04.png)Predicted state and authoritative state mismatch.
+
+我们在 **t = 250 ms** 的时候面临一个非常 interesting 的问题，当新的游戏状态回来时，客户端预测的位置已经到达 **x = 12**，但是服务器认为最新的坐标是 **x = 11**，因为权威服务器的缘故，客户端必须将角色移回 **x = 11**，但是紧接着，新的 **x = 12** 的状态在 **t = 350** 的时间到达，因此角色的位置又顺移回去了。。
 
 We run into an interesting problem at **t = 250 ms**, when the new game state arrives. The predicted state at the client is **x = 12**, but the server says the new game state is **x = 11**. Because the server is authoritative, the client must move the character back to **x = 11**. But then, a new server state arrives at **t = 350**, which says **x = 12**, so the character jumps again, forward this time.
 
 From the point of view of the player, he pressed the right arrow key twice; the character moved two squares to the right, stood there for 50 ms, jumped one square to the left, stood there for 100 ms, and jumped one square to the right. This, of course, is unacceptable.
 
-## Server reconciliation
+从玩家的角度来看，他按下两次向右按钮后，角色向右移动两格，原地停留50ms后，向左顺移一格，又原地停留100ms再向右顺移一个，很明显这种情况是不可接受的。
+
+## Server reconciliation 服务器调和
 
 The key to fix this problem is to realize that the client sees the game world *in present time*, but because of lag, the updates it gets from the server are actually the state of the game *in the past*. By the time the server sent the updated game state, it hadn’t processed all the commands sent by the client.
 
+问题的关键在于，客户端显示的是*当前时间*的游戏状态，但是因为延迟的关系，收到来自服务器的回复是*过去*的游戏状态。因为在收到服务器更新的时间点服务器并没有处理客户端发送的全部输入。
+
 This isn’t terribly difficult to work around, though. First, the client adds a sequence number to each request; in our example, the first key press is request #1, and the second key press is request #2. Then, when the server replies, it includes the sequence number of the last input it processed:
 
-![Client-side prediction + server reconciliation.](http://www.gabrielgambetta.com/img/fpm2-05.png)Client-side prediction + server reconciliation.
+这并不是一个非常严重的问题，首先，客户端在每次请求的时候加上 sequence number，在我们的例子中，第一次按键指令编号为 #1，第二次按键的指令编号为 #2。服务器回复的时候将其处理过最后一个 sequence number 包含在消息中。
+
+![Client-side prediction + server reconciliation.](http://www.gabrielgambetta.com/img/fpm2-05.png)Client-side prediction + server reconciliation. 
+
+那么现在，在 **t = 250** 的时候，服务器回复说 “**基于#1号请求的结果，你的坐标是x=11**”，因为权威服务器的关系，角色坐标将会被设置为**x = 11**。如果客户端将每一个发送至服务器的指令都保存下来的话
 
 Now, at **t = 250**, the server says “**based on what I’ve seen up to your request #1, your position is x = 11**”. Because the server is authoritative, it sets the character position at **x = 11**. Now let’s assume the client keeps a copy of the requests it sends to the server. Based on the new game state, it knows the server has already processed request #1, so it can discard that copy. But it also knows the server still has to send back the result of processing request #2. So applying client-side prediction again, the client can calculate the “present” state of the game based on the last authoritative state sent by the server, plus the inputs the server hasn’t processed yet.
 
