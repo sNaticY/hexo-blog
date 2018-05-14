@@ -89,17 +89,24 @@ This isn’t terribly difficult to work around, though. First, the client adds a
 
 ![Client-side prediction + server reconciliation.](http://www.gabrielgambetta.com/img/fpm2-05.png)Client-side prediction + server reconciliation. 
 
-那么现在，在 **t = 250** 的时候，服务器回复说 “**基于#1号请求的结果，你的坐标是x=11**”，因为权威服务器的关系，角色坐标将会被设置为**x = 11**。如果客户端将每一个发送至服务器的指令都保存下来的话
+那么现在，在 **t = 250** 的时候，服务器回复说 “**基于#1号请求的结果，你的坐标是x=11**”，因为权威服务器的关系，角色坐标将会被设置为**x = 11**。如果客户端将每一个发送至服务器的指令都保存下来的话，当收到了服务器的回包，客户端就知道服务器已经执行了 #1 号请求，所以就可以将保存下来的#1号请求的备份删除掉了，并且客户端还知道服务器尚未回复#2号请求的更新结果，因此客户端就可以基于服务器已经认证过的上次请求的结果结合服务器尚未处理的请求来重新计算客户端预测的状态。
 
 Now, at **t = 250**, the server says “**based on what I’ve seen up to your request #1, your position is x = 11**”. Because the server is authoritative, it sets the character position at **x = 11**. Now let’s assume the client keeps a copy of the requests it sends to the server. Based on the new game state, it knows the server has already processed request #1, so it can discard that copy. But it also knows the server still has to send back the result of processing request #2. So applying client-side prediction again, the client can calculate the “present” state of the game based on the last authoritative state sent by the server, plus the inputs the server hasn’t processed yet.
 
+所以在 **t = 250** 的时候，客户端收到 “**x = 11, 上次处理的请求 = #1**”。于是客户端丢弃了#1号请求的备份，因为服务器尚未处理#2号请求，因此客户端依然保留#2号请求的备份。该行为将会使得客户端基于服务器发送的 **x = 11** 来更新其内部游戏状态，然后将服务器尚未接收到的请求进行模拟。于是 #2号请求“向右移动”将会得到正确的结果，**x = 12**。
+
 So, at **t = 250**, the client gets “**x = 11, last processed request = #1**”. It discards its copies of sent input up to #1 – but it retains a copy of #2, which hasn’t been acknowledged by the server. It updates it internal game state with what the server sent, **x = 11**, and then applies all the input still not seen by the server – in this case, input #2, “move to the right”. The end result is **x = 12**, which is correct.
+
+继续我们的例子，在 **t = 350** 的时候，从服务器收到了新的游戏状态 “**x = 12, 上次处理的请求 = #2**”。于是客户端丢弃了 #2号请求前的所有备份，并将游戏状态更新到了**x = 12**。目前已经没有尚未被处理的请求了，进程结束在正确的状态。
 
 Continuing with our example, at **t = 350** a new game state arrives from the server; this time it says “**x = 12, last processed request = #2**”. At this point, the client discards all input up to #2, and updates the state with **x = 12**. There’s no unprocessed input to replay, so processing ends there, with the correct result.
 
-## Odds and ends
+## Odds and ends 偏差与结果
+
+虽然以上的例子只讨论了移动的情况，但是同样地规则可以适用于几乎任何状况，例如在回合制对抗游戏中，当玩家攻击其他的角色时，可以先显示血量和数值就好像已经完成攻击了一样，但是直到服务器回复之前不可以直接更新角色的血量。
 
 The example discussed above implies movement, but the same principle can be applied to almost anything else. For example, in a turn-based combat game, when the player attacks another character, you can show blood and a number representing the damage done, but you shouldn’t actually update the health of the character until the server says so.
+
 
 Because of the complexities of game state, which isn’t always easily reversible, you may want to avoid killing a character until the server says so, even if its health dropped below zero in the client’s game state (what if the other character used a first-aid kit just before receiving your deadly attack, but the server hasn’t told you yet?)
 
