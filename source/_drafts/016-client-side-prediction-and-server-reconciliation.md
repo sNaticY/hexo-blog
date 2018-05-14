@@ -103,15 +103,20 @@ Continuing with our example, at **t = 350** a new game state arrives from the se
 
 ## Odds and ends 偏差与结果
 
-虽然以上的例子只讨论了移动的情况，但是同样地规则可以适用于几乎任何状况，例如在回合制对抗游戏中，当玩家攻击其他的角色时，可以先显示血量和数值就好像已经完成攻击了一样，但是直到服务器回复之前不可以直接更新角色的血量。
+虽然以上的例子只讨论了移动的情况，但是同样地规则可以适用于几乎任何状况，例如在回合制对抗游戏中，当玩家攻击其他的角色时，可以先显示血量和数值就好像已经完成攻击了一样，但是直到服务器回复之前最好不要直接更新角色的血量。
 
 The example discussed above implies movement, but the same principle can be applied to almost anything else. For example, in a turn-based combat game, when the player attacks another character, you can show blood and a number representing the damage done, but you shouldn’t actually update the health of the character until the server says so.
 
+因为游戏状态的复杂性，很多时候并不能轻易的逆转。就算是客户端状态认为某个角色的血量掉到0，你也要尽可能避免在服务器确认之前就杀死该角色。（如果其他角色在你致死攻击前使用了急救包而服务器并没有告诉你呢？）
 
 Because of the complexities of game state, which isn’t always easily reversible, you may want to avoid killing a character until the server says so, even if its health dropped below zero in the client’s game state (what if the other character used a first-aid kit just before receiving your deadly attack, but the server hasn’t told you yet?)
 
+于是一个有趣的结论诞生了，即使整个游戏世界是完全可预测的而且没有任何客户端作弊，在服务器调和后依然无法保证客户端预测的游戏状态与服务器下发的真实状态完全匹配。虽然在只有单个玩家的情况下这种情景不可能发生，但在多个玩家同时连接到服务器的情况下很容易发生。我们将在下一篇文章中讨论这个问题。
+
 This brings us to an interesting point – even if the world is completely deterministic and no clients cheat at all, it’s still possible that the state predicted by the client and the state sent by the server don’t match after a reconciliation. The scenario is impossible as described above with a single player, but it’s easy to run into when several players are connected to the server at once. This will be the topic of the next article.
 
-### Summary
+### Summary 结论
+
+当我们使用权威服务器时，即使是在等待服务器处理你的输入也要尽可能让玩家感到反应迅速。要做到这一点需要客户端提前将其发送到服务器的输入进行模拟并显示结果。当客户端收到服务器的状态更新时，客户端再重新根据服务器发来的新状态来计算后续输入的运行结果。
 
 When using an authoritative server, you need to give the player the illusion of responsiveness, while you wait for the server to actually process your inputs. To do this, the client simulates the results of the inputs. When the updated server state arrives, the predicted client state is recomputed from the updated state and the inputs the client sent but the server hasn’t acknowledged yet.
