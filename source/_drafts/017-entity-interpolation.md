@@ -71,6 +71,8 @@ Suppose you’re making a car racing game. A car that goes really fast is pretty
 
 Why “roughly”? During that second the car could have accelerated or decelerated a bit, or turned to the right or to the left a bit – the key word here is “a bit”. The maneuverability of a car is such that at high speeds its position at any point in time is highly dependent on its previous position, speed and direction, regardless of what the player actually does. In other words, a racing car can’t do a 180º turn instantly.
 
+为什么这种方法适用于每100ms发送一次消息的服务器呢？客户端收到每一个对手车辆的已被验证过的速度和航向后，接下来的100ms之内并不会收到其他任何消息，但是客户端仍然需要将移动的过程显示出来，最简单的方式就是假设车辆的速度和航向在这100ms内保持不变，然后在本地移动车辆的物理位置。然后在100ms后，当服务器返回消息的时候再矫正车辆的位置。
+
 How does this work with a server that sends updates every 100 ms? The client receives authoritative speed and heading for every competing car; for the next 100 ms it won’t receive any new information, but it still needs to show them running. The simplest thing to do is to assume the car’s heading and acceleration will remain constant during that 100 ms, and run the car physics locally with that parameters. Then, 100 ms later, when the server update arrives, the car’s position is corrected.
 
 The correction can be big or relatively small depending on a lot of factors. If the player does keep the car on a straight line and doesn’t change the car speed, the predicted position will be exactly like the corrected position. On the other hand, if the player crashes against something, the predicted position will be extremely wrong.
