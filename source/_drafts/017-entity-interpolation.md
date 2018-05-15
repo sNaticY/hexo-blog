@@ -7,41 +7,67 @@ categories: 快节奏多人游戏同步
 
 [<< Series Start](http://www.gabrielgambetta.com/client-server-game-architecture.html)[Gabriel Gambetta](http://www.gabrielgambetta.com/index.html)
 
-# Fast-Paced Multiplayer (Part III): Entity Interpolation
+# Fast-Paced Multiplayer (Part III): Entity Interpolation 实体插值
 
 [Client-Server Game Architecture](http://www.gabrielgambetta.com/client-server-game-architecture.html) · [Client-Side Prediction and Server Reconciliation](http://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html) · [Entity Interpolation](http://www.gabrielgambetta.com/entity-interpolation.html) · [Lag Compensation](http://www.gabrielgambetta.com/lag-compensation.html) · [Live Demo](http://www.gabrielgambetta.com/client-side-prediction-live-demo.html)
 
-## Introduction
+## Introduction 概述
+
+在本系列的第一篇文章中，我们介绍了关于权威服务器及其反作弊特性，然而仅仅是最简单的实现可能会导致关于可玩性和相应速度的问题。在第二篇文章中，我们提出了「客户端预测」的方案来克服这个困难。
 
 In the [first article](http://www.gabrielgambetta.com/client-server-game-architecture.html) of the series, we introduced the concept of an *authoritative server* and its usefulness to prevent client cheats. However, using this technique naively can lead to potentially showstopper issues regarding playability and responsiveness. In the [second article](http://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html), we proposed *client-side prediction* as a way to overcome these limitations.
 
+以上两篇文章介绍的其实是一种即使是连接到有传输延迟的远程权威服务器也可以让玩家像单机游戏一样流畅的控制游戏内角色移动的一种概念和技术。
+
 The net result of these two articles is a set of concepts and techniques that allow a player to control an in-game character in a way that feels exactly like a single-player game, even when connected to an authoritative server through an internet connection with transmission delays.
+
+在本文中，我们将会讨论在在同一台服务器上有其他玩家控制角色的情况。
 
 In this article, we’ll explore the consequences of having other player-controled characters connected to the same server.
 
-## Server time step
+## Server time step 服务器时间步进
+
+在之前的文章中，我们的服务器实现非常简单，它负责处理客户端的输入并更新游戏状态，最后将结果发送回客户端。但是当多个玩家连接的时候，服务器主循环会有略微不同。
 
 In the previous article, the behavior of the server we described was pretty simple – it read client inputs, updated the game state, and sent it back to the client. When more than one client is connected, though, the main server loop is somewhat different.
 
+在这种情况下，多个客户端可能会相当快节奏的同时发送输入（和玩家发送指令一样快，比如按下按键，移动鼠标或者点击屏幕之类的）每次收到客户端输入就更新游戏状态并广播给全部玩家可能会消耗过多的 cpu 资源和带宽。
+
 In this scenario, several clients may be sending inputs simultaneously, and at a fast pace (as fast as the player can issue commands, be it pressing arrow keys, moving the mouse or clicking the screen). Updating the game world every time inputs are received from each client and then broadcasting the game state would consume too much CPU and bandwidth.
+
+更好的方案是将客户端的输入放进队列中先不处理，等待周期性的更新，例如每秒钟10次之类的。这100ms的间隔我们称之为 time step 步进。每次更新都会将所有未被处理的输入进行处理，然后将新的游戏状态广播给所有玩家。
 
 A better approach is to queue the client inputs as they are received, without any processing. Instead, the game world is updated periodically at low frequency, for example 10 times per second. The delay between every update, 100ms in this case, is called the*time step*. In every update loop iteration, all the unprocessed client input is applied (possibly in smaller time increments than the time step, to make physics more predictable), and the new game state is broadcast to the clients.
 
+总而言之，整个游戏会以固定的，不受客户端的表现和数量影响的频率持续更新。
+
 In summary, the game world updates independent of the presence and amount of client input, at a predictable rate.
 
-## Dealing with low-frequency updates
+## Dealing with low-frequency updates 低频更新处理
+
+从客户端的角度来看，以上方法可以像以前使用客户端独立预测一样的平滑，所以很明显在相对低频的状态更新下仍然是可预测的。然而由于游戏状态以较低频率广播（例如100ms），客户端只能得到较少的其他移动实体的信息。
 
 From the point of view of a client, this approach works as smoothly as before – client-side prediction works independently of the update delay, so it clearly also works under predictable, if relatively infrequent, state updates. However, since the game state is broadcast at a low frequency (continuing with the example, every 100ms), the client has very sparse information about the other entities that may be moving throughout the world.
 
+原来的实现将会在收到其他角色的位置时立即更新，这将会导致角色每 100ms 顺移一次而不是平滑移动。
+
 A first implementation would update the position of other characters when it receives a state update; this immediately leads to very choppy movement, that is, discrete jumps every 100ms instead of smooth movement.
 
-![Client 1 as seen by Client 2.](http://www.gabrielgambetta.com/img/fpm3-01.png)Client 1 as seen by Client 2.
+![Client 1 as seen by Client 2.](https://s2.51cto.com/wyfs02/M02/8D/AE/wKiom1ilt5DD1uwkAACfpevkX3A342.png-wh_500x0-wm_3-wmp_4-s_4138866562.png)
+
+Client 1 as seen by Client 2.
+
+根据你所开发的游戏类型的不同，这个问题有很多不同的解决方案，你的游戏中的实体可预测性越高，你就越容易得出正确的结果。
 
 Depending on the type of game you’re developing there are many ways to deal with this; in general, the more predictable your game entities are, the easier it is to get it right.
 
-## Dead reckoning
+## Dead reckoning 预测法
+
+假设你正在制作一个赛车游戏，一辆跑得非常快的车是很容易预测的，比如说，如果这辆车的速度是 100m/s ，一秒后这辆车的位置大概就是其前方100m处。
 
 Suppose you’re making a car racing game. A car that goes really fast is pretty predictable – for example, if it’s running at 100 meters per second, a second later it will be roughly 100 meters ahead of where it started.
+
+为什么是『大概』？因为在这一秒钟之间这两车可能加速或者减速了一点点，或者左拐右拐的一点点，关键词在于『一点点』。无论玩家做了什么操作，高速行驶的车辆的机动性很大程度上取决于它之前的位置，方向和速度。换而言之，一辆车不能瞬间180度大转弯～
 
 Why “roughly”? During that second the car could have accelerated or decelerated a bit, or turned to the right or to the left a bit – the key word here is “a bit”. The maneuverability of a car is such that at high speeds its position at any point in time is highly dependent on its previous position, speed and direction, regardless of what the player actually does. In other words, a racing car can’t do a 180º turn instantly.
 
