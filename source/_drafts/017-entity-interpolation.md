@@ -61,7 +61,7 @@ Client 1 as seen by Client 2.
 
 Depending on the type of game you’re developing there are many ways to deal with this; in general, the more predictable your game entities are, the easier it is to get it right.
 
-## Dead reckoning 预测法
+## Dead reckoning 航位推测法
 
 假设你正在制作一个赛车游戏，一辆跑得非常快的车是很容易预测的，比如说，如果这辆车的速度是 100m/s ，一秒后这辆车的位置大概就是其前方100m处。
 
@@ -71,19 +71,29 @@ Suppose you’re making a car racing game. A car that goes really fast is pretty
 
 Why “roughly”? During that second the car could have accelerated or decelerated a bit, or turned to the right or to the left a bit – the key word here is “a bit”. The maneuverability of a car is such that at high speeds its position at any point in time is highly dependent on its previous position, speed and direction, regardless of what the player actually does. In other words, a racing car can’t do a 180º turn instantly.
 
-为什么这种方法适用于每100ms发送一次消息的服务器呢？客户端收到每一个对手车辆的已被验证过的速度和航向后，接下来的100ms之内并不会收到其他任何消息，但是客户端仍然需要将移动的过程显示出来，最简单的方式就是假设车辆的速度和航向在这100ms内保持不变，然后在本地移动车辆的物理位置。然后在100ms后，当服务器返回消息的时候再矫正车辆的位置。
+为什么这种方法适用于每100ms发送一次消息的服务器呢？客户端收到每一个对手车辆的已被验证过的速度和航向后，接下来的100ms之内并不会收到其他任何消息，但是客户端仍然需要将移动的过程显示出来，最简单的方式就是假设车辆的速度和航向在这100ms内保持不变，然后在本地移动车辆的物理位置。然后在100ms后，当服务器返回消息的时候再矫正车辆的位置。注意
 
 How does this work with a server that sends updates every 100 ms? The client receives authoritative speed and heading for every competing car; for the next 100 ms it won’t receive any new information, but it still needs to show them running. The simplest thing to do is to assume the car’s heading and acceleration will remain constant during that 100 ms, and run the car physics locally with that parameters. Then, 100 ms later, when the server update arrives, the car’s position is corrected.
 
+这里的「矫正」可能很大也可能很小，取决于许多的变量。如果玩家直直的开着车完全没有拐弯也没有踩刹车和油门，那么预测将会与最终位置完全匹配。然而如果玩家撞到什么东西的话，预测将会有巨大的误差。
+
 The correction can be big or relatively small depending on a lot of factors. If the player does keep the car on a straight line and doesn’t change the car speed, the predicted position will be exactly like the corrected position. On the other hand, if the player crashes against something, the predicted position will be extremely wrong.
+
+需要注意的是，航位推测法可以适用于低速情形，比如战列舰等。事实上「航位推测法」这个词本来就来自于海军导航术语。
 
 Note that dead reckoning can be applied to low-speed situations – battleships, for example. In fact, the term “dead reckoning” has its origins in marine navigation.
 
-## Entity interpolation
+## Entity interpolation 实体插值
+
+有一些情形航标推测法是无法适用的，尤其是那些玩家的方向和速度会突然变化的那种。。比如说在3d射击游戏中，玩家经常会很以极快的速度走走停停转方向，由于位置和速度不再是可预测的，使得航标推测法完全没用了。
 
 There are some situations where dead reckoning can’t be applied at all – in particular, all scenarios where the player’s direction and speed can change instantly. For example, in a 3D shooter, players usually run, stop, and turn corners at very high speeds, making dead reckoning essentially useless, as positions and speeds can no longer be predicted from previous data.
 
 You can’t just update player positions when the server sends authoritative data; you’d get players who teleport short distances every 100 ms, making the game unplayable.
+
+你无法仅当服务器下发数据的时候才更新位置，因为这样会导致玩家每100ms闪现一次，严重影响正常游戏～
+
+你目前只有每100ms的玩家准确位置，因此关键在于如何在两个100ms之间把发生的事情显示出来。
 
 What you do have is authoritative position data every 100 ms; the trick is how to show the player what happens inbetween. The key to the solution is to show the other players *in the past* relative to the user’s player.
 
