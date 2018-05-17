@@ -93,25 +93,41 @@ You can’t just update player positions when the server sends authoritative dat
 
 你无法仅当服务器下发数据的时候才更新位置，因为这样会导致玩家每100ms闪现一次，严重影响正常游戏～
 
-你目前只有每100ms的玩家准确位置，因此关键在于如何在两个100ms之间把发生的事情显示出来。
+你目前只有每100ms的玩家准确位置，因此关键在于如何在两个100ms之间把发生的事情「脑补」出来。解决这个问题只需要将其他玩家相对于玩家自己的“过去”的位置显示出来就好了。
 
 What you do have is authoritative position data every 100 ms; the trick is how to show the player what happens inbetween. The key to the solution is to show the other players *in the past* relative to the user’s player.
+
+假设你在 **t = 1000** 收到了所有玩家的位置信息，因为 **t = 900** 时的游戏状态已经收到了，所以你同时知道 **t = 900** 和 **t = 1000** 时的位置，所以从 **t = 1000** 到 **t = 1100** ，你可以显示其他玩家 **t = 900** 到 **t = 1000** 这段时间内发生的事情。如此你便一直显示着你自己的确切位置，而其他玩家则晚 100ms 才更新。
 
 Say you receive position data at **t = 1000**. You already had received data at **t = 900**, so you know where the player was at **t = 900** and **t = 1000**. So, from **t = 1000** and **t = 1100**, you show what the other player did from **t = 900** to **t = 1000**. This way you’re always showing the user *actual movement data*, except you’re showing it 100 ms “late”.
 
 ![Client 2 renders Client 1 in the past, interpolating last known positions.](http://www.gabrielgambetta.com/img/fpm3-02.png)Client 2 renders Client 1 “in the past”, interpolating last known positions.
 
+用来从**t = 900** 到 **t = 1000**插值的位置信息取决于游戏，一般来说插值法表现还不错。如果不行的话，你可以让服务器发送更多的细节给你，比如说发送玩家在移动过程中的位置序列，或者每10ms进行一次采样从而让插值结果更加自然。（也未必需要发送10倍的数据量，尝试改成发送增量式的移动可以在特定情况下可以得到优化）
+
 The position data you use to interpolate from **t = 900** to **t = 1000** depends on the game. Interpolation usually works well enough. If it doesn’t, you can have the server send more detailed movement data with each update – for example, a sequence of straight segments followed by the player, or positions sampled every 10 ms which look better when interpolated (you don’t need to send 10 times more data – since you’re sending deltas for small movements, the format on the wire can be heavily optimized for this particular case).
+
+需要注意的是使用这种技术，每个玩家可能看到的游戏世界略微不同。因为每个玩家都看到自己当前状态但是看到的是其他玩家的过去状态。即使是快节奏游戏中也是如此。然而一般来说100ms的延迟不是非常明显。
 
 Note that using this technique, every player sees a slightly different rendering of the game world, because each player sees itself *in the present* but sees the other entities *in the past*. Even for a fast paced game, however, seeing other entities with a 100 ms isn’t generally noticeable.
 
+
+
 There are exceptions – when you need a lot of spatial and temporal accuracy, such as when the player shoots at another player. Since the other players are seen in the past, you’re aiming with a 100 ms delay – that is, you’re shooting where your target was 100 ms ago! We’ll deal with this in the next article.
 
-## Summary
+有一种例外，当你需要很精确的计算的时候，比如说一个玩家射击另一个玩家，因为你看到的是其他玩家是过去的位置，导致你总是延迟100ms才能瞄准，这就意味着你瞄准的总是100ms之前的目标，我们在下一篇文章中会处理这个问题。
+
+## Summary 总结
+
+即便是低频更新和网络延迟的情况下，你也必须让玩家感受到持续的平滑移动。在[第二篇文章](http://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)中，我们讲解了客户端预测和服务器调和方法来让玩家实时移动，着确保玩家的输入会得到立即反馈，从而避免的延迟造成的严重问题。
 
 In a client-server environment with an authoritative server, infrequent updates and network delay, you must still give players the illusion of continuity and smooth movement. In [part 2 of the series](http://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html) we explored a way to show the user controlled player’s movement in real time using client-side prediction and server reconciliation; this ensures user input has an immediate effect on the local player, removing a delay that would render the game unplayable.
 
+但是其他的玩家控制的实体依然有问题，在本文中我们介绍了两种方法来解决。
+
 Other entities are still a problem, however. In this article we explored two ways of dealing with them.
+
+第一种是 *航位推测法* 在特定种类的模拟游戏中实体的位置可以根据当前的速度和加速度等等进行预测。在条件不符合的时候就会导致预测失败。
 
 The first one, *dead reckoning*, applies to certain kinds of simulations where entity position can be acceptably estimated from previous entity data such as position, speed and acceleration. This approach fails when these conditions aren’t met.
 
