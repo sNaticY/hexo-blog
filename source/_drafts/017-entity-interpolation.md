@@ -131,7 +131,11 @@ Other entities are still a problem, however. In this article we explored two way
 
 The first one, *dead reckoning*, applies to certain kinds of simulations where entity position can be acceptably estimated from previous entity data such as position, speed and acceleration. This approach fails when these conditions aren’t met.
 
+第二种 *实体插值法* 完全不预测未来的位置，只使用实体的真实数据然后略微延迟其显示的时间。
+
 The second one, *entity interpolation*, doesn’t predict future positions at all – it uses only real entity data provided by the server, thus showing the other entities slightly delayed in time.
+
+
 
 The net effect is that the user’s player is seen *in the present* and the other entities are seen *in the past*. This usually creates an incredibly seamless experience.
 
