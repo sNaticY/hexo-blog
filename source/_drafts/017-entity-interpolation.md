@@ -135,9 +135,11 @@ The first one, *dead reckoning*, applies to certain kinds of simulations where e
 
 The second one, *entity interpolation*, doesn’t predict future positions at all – it uses only real entity data provided by the server, thus showing the other entities slightly delayed in time.
 
-
+这种方法唯一的影响就是玩家同时看到了自己*现在的*状态，而看到了其他人*过去的状态*，这通常可以带来天衣无缝的体验。
 
 The net effect is that the user’s player is seen *in the present* and the other entities are seen *in the past*. This usually creates an incredibly seamless experience.
+
+然而仅仅是这样的话，当某个事件需要被及其精确的处理的时候就会出现问题，比如说当你射击移动物体时，「客户端2」屏幕上显示的「客户端1」的位置既不是服务器中「客户端1」的位置也不是「客户端1]自己显示的位置。所以爆头什么的变成了不可能的任务，然而爆头总是必要的，因此我们必须在下一篇文章中解决这个问题。
 
 However, if nothing else is done, the illusion breaks down when an event needs high spatial and temporal accuracy, such as shooting at a moving target: the position where Client 2 renders Client 1 doesn’t match the server’s nor Client 1′s position, so headshots become impossible! Since no game is complete without headshots, we’ll deal with this issue in the next article.
 
