@@ -80,31 +80,49 @@ Here’s how it works:
 - When you shoot, client sends this event to the server with full information: the exact timestamp of your shot, and the exact aim of the weapon.
 - 开火的时候，客户端发送开火指令到服务器，同时包含开火的一瞬间确切的时间和方向。
 - **Here’s the crucial step**. Since the server gets all the input with timestamps, it can authoritatively reconstruct the world at any instant in the past. In particular, it can reconstruct the world exactly as it looked like to any client at any point in time.
-- **至关重要的一步**，服务器获取到所有带有时间戳的输入后，服务器可以重新构建过去任何时刻的游戏世界。尤其是可以构建任何客户端在任何时间点看到的几乎完全一致的世界
+- **至关重要的一步**，服务器获取到所有带有时间戳的输入后，服务器可以重新构建过去任何时刻的游戏世界。尤其是可以构建任何客户端在任何时间点看到的几乎完全一致的游戏状态
 - This means the server can know exactly what was on your weapon’s sights the instant you shot. It was the *past* position of your enemy’s head, but the server knows it was the position of his head in *your* present.
+- 这意味着服务器可以确切的知道在你射击的时候你武器瞄准的是什么，虽然那是你的目标的过去的位置，但是服务器知道他就是你当前瞄准的位置
 - The server processes the shot *at that point in time*, and updates the clients.
+- 服务器处理在那时设计那个点，并更新每个客户端状态
 
 And everyone is happy!
 
+大家都很满意~
+
 The server is happy because he’s the server. He’s always happy.
+
+服务器很开心是因为他是服务器，他永远都很开心
 
 You’re happy because you were aiming at your enemy’s head, shot, and got a rewarding headshot!
 
+你很开心是因为你瞄准目标头部并射击，完成了一记漂亮的爆头
+
 The enemy may be the only one not entirely happy. If he was standing still when he got shot, it’s his fault, right? If he was moving… wow, you’re a really awesome sniper.
+
+你的敌人可能是唯一不完全开心的哪个，如果他站在原地被你爆头那就是他的问题，但是如果他在移动的话，只能说明你是特别厉害的狙击手。
 
 But what if he was in an open position, got behind a wall, and *then* got shot, a fraction of a second later, when he thought he was safe?
 
+但是如果他在墙后面的一个开放位置，然后移动到了自以为安全的位置以后才被命中了呢？
+
 Well, that can happen. That’s the tradeoff you make. Because you shoot at him in the past, he may still be shot up to a few milliseconds after he took cover.
+
+是的，这是有可能发生的，这就是你要付出的代价，因为你在过去射击了他，他可能在进入掩体后几毫秒被射击
 
 It is somewhat unfair, but it’s the most agreeable solution for everyone involved. It would be much worse to miss an unmissable shot!
 
-## Conclusion
+从某种程度上来说这是不公平的，但这是每个人最大化可接受的方案了，明明瞄准了开枪最后却miss是令人无法接受的
+
+## Conclusion 结论
+
+这篇文章是快节奏多人游戏同步这个系列的最后一篇了，很明显这种事情需要很讨巧的方法。
 
 This ends my series on Fast-paced Multiplayer. This kind of thing is clearly tricky to get right, but with a clear conceptual understanding about what’s going on, it’s not exceedingly difficult.
 
 Although the audience of these articles were game developers, it found another group of interested readers: gamers! From a gamer point of view it’s also interesting to understand why some things happen the way they happen.
 
-### Further Reading
+### Further Reading 更多
 
 As clever as these techniques are, I can’t claim any credit for them; these articles are just an easy to understand guide to some concepts I’ve learned from other sources, including articles and source code, and some experimentation.
 
