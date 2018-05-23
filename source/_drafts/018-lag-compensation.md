@@ -116,14 +116,20 @@ It is somewhat unfair, but it’s the most agreeable solution for everyone invol
 
 ## Conclusion 结论
 
-这篇文章是快节奏多人游戏同步这个系列的最后一篇了，很明显这种事情需要很讨巧的方法。
+这篇文章是快节奏多人游戏同步这个系列的最后一篇了，虽然这类事情看起来有一些复杂，但是对相关概念有了清晰理解以后再看也并不是那么困难的事
 
 This ends my series on Fast-paced Multiplayer. This kind of thing is clearly tricky to get right, but with a clear conceptual understanding about what’s going on, it’s not exceedingly difficult.
 
+
+
 Although the audience of these articles were game developers, it found another group of interested readers: gamers! From a gamer point of view it’s also interesting to understand why some things happen the way they happen.
+
+虽然本文的读者都是游戏开发者，但依然有着另一部分读者对此很感兴趣，那就是玩家。对玩家来说去理解此类事情的过程依然是一件很有趣的事情。
 
 ### Further Reading 更多
 
 As clever as these techniques are, I can’t claim any credit for them; these articles are just an easy to understand guide to some concepts I’ve learned from other sources, including articles and source code, and some experimentation.
+
+以下是一些参考资料包括文章和源码之类的，可以帮助大家更方便的理解相关概念。
 
 The most relevant articles about this topic are [What Every Programmer Needs to Know About Game Networking](http://gafferongames.com/networking-for-game-programmers/what-every-programmer-needs-to-know-about-game-networking/) and [Latency Compensating Methods in Client/Server In-game Protocol Design and Optimization](https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization).
