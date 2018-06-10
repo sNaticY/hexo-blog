@@ -1,5 +1,5 @@
 ---
-title: Catlike学习笔记(1.1)-实现一个钟表
+title: Catlike学习笔记(1.1)-使用Unity实现一个钟表
 draft: false
 date: 2018-06-06 18:31:50
 tags: [unity, tutorial, basic, csharp]
@@ -41,7 +41,7 @@ void Update()
 
 然而运行一下会发现时针和分针都是笔直的指向其所在的时间。。如下图所示
 
-![MakeScene](http://ojgpkbakj.bkt.clouddn.com/2018060802.png)
+![Clock](http://ojgpkbakj.bkt.clouddn.com/2018060802.png)
 
 好吧现在刚好七点钟貌似看不出来，总之就是需要在比如 6:30 的时候时针应该指向 6 和 7 之间。所以这个度数需要再加上一点偏移，变成下面这样。
 
@@ -60,7 +60,7 @@ void Update()
 
 就可以轻松实现文章里的各种平滑移动之类的～
 
-![MakeScene](http://ojgpkbakj.bkt.clouddn.com/2018060803.gif)
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018060803.gif)
 
 ## PART 4 总结
 
@@ -68,6 +68,6 @@ void Update()
 
 ---
 
-原文链接：http://snatix.com/2017/04/04/014-automatic-export-ipa-with-shell/
+原文链接：https://snatix.com/2018/06/06/019-gameobject-and-scripts//
 
 本文由 sNatic 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
