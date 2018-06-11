@@ -94,3 +94,8 @@ math:
     js: custom_js_source # not used
     config:
       # KaTeX config
+
+
+sitemap:
+  path: sitemap.xml
+  template: ./sitemap_template.xml
