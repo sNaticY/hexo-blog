@@ -1,9 +1,9 @@
 ---
 title: Catlike学习笔记(1.2)-使用Unity画函数图像
-drafth: true
 date: 2018-06-09 20:55:42
 tags: [unity, tutorial, basic, csharp]
 categories: Catlike学习笔记
+mathjax: true
 ---
 
 『[Catlike系列教程](https://catlikecoding.com/unity/tutorials/)』第二篇来了~今天周六，~~早上~~（上午11点）醒来去超市买了一周的零食回来以后就玩了一整天游戏非常有负罪感。现在晚上九点天还亮着感觉像下午7点左右的样子好像还不是很晚。。。所以就写一点东西吧。这一篇是「[Building a Graph](https://catlikecoding.com/unity/tutorials/basics/building-a-graph/)」挑战一下试试吧。
@@ -53,10 +53,8 @@ public class GraphController : MonoBehaviour
 }
 ```
 
-根据`Calc(float)`可以看出我们画出来曲线是如下函数的图像。
-$$
-y = x ^ 2
-$$
+根据`Calc(float)`可以看出我们画出来曲线是如下函数的图像。 $y=x^2$ $f(x)=ax+b$
+
 ![Graph](http://ojgpkbakj.bkt.clouddn.com/2018061001.png)
 
 ## PART 3 给曲线上色
