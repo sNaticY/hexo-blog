@@ -240,7 +240,7 @@ comment:
     changyan_conf:
     changyan_thread_key_type: path
     livere_data_uid:
-    gitment_repo: https://github.com/sNaticY/hexo-blog.git  # git repo of the hexo
+    gitment_repo: hexo-blog  # git repo of the hexo
     gitment_owner: sNaticY # git repo's owner
     gitment_client_id: 2ed6908a49c9d9b463a2 # github app client id 
     gitment_client_secret : 1c7ed40bc6c9c95e3e682ca3544846403d37115c # github app client secret 
