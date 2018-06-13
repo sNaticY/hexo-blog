@@ -7,13 +7,14 @@
 
 <script>
     var gitalk = new Gitalk({
+            id: '<%= page.date %>',
             clientID: '<%= theme.comment.gitalk_client_id %>',
             clientSecret: '<%= theme.comment.gitalk_client_secret %>',
             repo: '<%= theme.comment.gitalk_repo %>',
             owner: '<%= theme.comment.gitalk_owner %>',
             admin: ['<%= theme.comment.gitalk_owner %>'],
             // facebook-like distraction free mode
-            distractionFreeMode: false
+            distractionFreeMode: true
         })
    gitalk.render('gitalk-container')
 </script>
