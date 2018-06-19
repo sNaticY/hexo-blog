@@ -7,7 +7,7 @@ categories: Catlike学习笔记
 mathjax: true
 ---
 
-第三篇来了～感觉我的自由时间在 「想自己做游戏」-「想不到有趣的所以先玩一段时间」-「自己尝试做游戏」-「好难啊写不动了所以玩一段时间」-「写博客」-「写不动了还是继续玩一段时间」-「其他对自己有益的事情」-「没什么理由反正就是想玩」之间反复循环。这篇似乎难度瞬间提高了不少要认真起来了～~~毕竟这个坑刚开不久这样就弃坑似乎不太好~~。按照惯例奉上『[原文链接](https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/)』
+第三篇来了～今天去参加了 Unite 2018 Berlin，感觉就是。。。。非常困。。。回来以后稍微睡了下清醒了觉得是时候认真学习下了，不过讲的很多东西都是还没有发布或者只有 Preview 的版本，按照 Unity 的习惯肯定 Bug 多到令人发指，最近不太想折腾所以就先继续写文章把。。按照惯例奉上『[原文链接](https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/)』
 
 <!--more-->
 
@@ -22,16 +22,316 @@ mathjax: true
 对比上一篇文章的函数图像，大概有以下几个关键点需要实现。
 
 * 支持多函数叠加
-* 从二维平面上的一条曲线变成三维曲面
-* 由三维曲面扩展成真正的三维图形
+* 从一条曲线变成一个曲面
+* 由曲面扩展成真正的三维图形
 
 ## PART 2 支持多函数叠加
 
+首先我们的目标是可以通过一个滑杆来控制「[上一篇](https://snatix.com/2018/06/09/020-building-a-grap/)」中的曲线显示的函数，因此先复制之前的代码改改名字比如 Graph3DController.cs 再修改类名与文件名一致。然后我们的关键是需要修改这一行
 
+```csharp
+var pos = new Vector3(x, Calc(x), 0);
+```
 
-## PART 3 画出三维的面
+使其变成根据滑杆中的 int 值选择 delegate 中的某个函数，如下所示，代码中主要修改的地方用注释稍微解释了下。
+
+```csharp
+// 新的 deleagate
+public delegate float Function(float x, float t);
+
+// 记得修改类名与文件名一致否则不能挂在 gameobject 上
+public class Graph3DController : MonoBehaviour
+{
+	[Range(10, 100), SerializeField] private int _resolution;
+	[SerializeField] private GameObject _cube;
+	// 添加新的滑杆
+	[Range(0, 1), SerializeField] private int _function;
+	// 一个 delegate 数组用于保存我们接下来使用的两个函数
+	private Function[] _functions;
+	
+	...
+
+	// Use this for initialization
+	private void Start()
+	{
+		// 初始化 _functions 
+		_functions = new Function[] {SineFunction, MultiSineFunction};		
+		...
+	}
+
+	private void Update()
+	{
+		_startX = -1f;
+		for (int i = 0; i < _resolution; i++)
+		{
+			var x = _startX + i * _step;
+			// 此处修改调用方法
+			var pos = new Vector3(x, _functions[_function](x, Time.time), 0);
+			var point = _points[i];
+			point.transform.localPosition = pos;
+		}
+	}
+
+	private float SineFunction(float x, float t)
+	{
+		return Mathf.Sin(Mathf.PI * (x + t));
+	}
+
+	private float MultiSineFunction(float x, float t)
+	{
+		float y = Mathf.Sin(Mathf.PI * (x + t));
+		y += Mathf.Sin(2f * Mathf.PI * (x + 2f * t)) / 2f;
+		y *= 2f / 3f;
+		return y;
+	}
+}
+
+```
+
+于是我们实现了如下的效果～
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061801.gif)
+
+不过作者在原文中还添加了 Enum 然后可以不用滑杆而是改用一个下拉菜单来改变要显示的函数图像。最终效果没什么不同就不再赘述了感兴趣的同学可以自行找到『[原文链接](https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/)』查看更详细的步骤～
+
+## PART 3 画出水滴的波纹
+
+那么接下来开始要真正的绘制一个3D曲面了~那么首先是创建更多的小方块～我们在初始化的地方改成一个二维的 List 来保存所有的小方块
+
+```csharp
+private void Start()
+{
+    ...
+    for (int i = 0; i < _resolution; i++)
+    {
+        _points.Add(new List<Transform>());
+        for (int j = 0; j < _resolution; j++)
+        {
+            var point = Instantiate(_cube, transform);
+            _points[i].Add(point.transform);
+            point.transform.localScale = scale;
+            point.SetActive(true);
+        }
+    }
+}
+```
+
+在后续的遍历也对该二维数组进行遍历。
+
+```csharp
+private void Update()
+{
+    for (int i = 0; i < _points.Count; i++)
+    {
+        for (int j = 0; j < _points[i].Count; j++)
+        {
+            var posX = i * _step - 1;
+            var posZ = j * _step - 1;
+            var pos = new Vector3(posX, _functions[(int) _function](posX, posZ, Time.time), posZ);
+            var point = _points[i][j];
+            point.localPosition = pos;
+        }
+    }
+}
+```
+
+最后再稍微修改下两个函数的参数就完成了从 2D 到 3D 的跳跃～如图所示
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061802.gif)
+
+不过我们并不应该满足于此，感觉这样其实并没有充分利用 Z 轴啊，完全就是复制了很多条曲线排在一起。所以我们新建两个这样的函数。
+
+```csharp
+private float Sine2DFunction(float x, float z, float t)
+{
+    float y = Mathf.Sin(Mathf.PI * (x + t));
+    y += Mathf.Sin(Mathf.PI * (z + t));
+    y *= 0.5f;
+    return y;
+}
+
+private float MultiSine2DFunction(float x, float z, float t)
+{
+    float y = 4f * Mathf.Sin(Mathf.PI * (x + z + t * 0.5f));
+    y += Mathf.Sin(Mathf.PI * (x + t));
+    y += Mathf.Sin(2f * Mathf.PI * (z + 2f * t)) * 0.5f;
+    y *= 1f / 5.5f;
+    return y;
+}
+```
+
+那么` Sine2DFunction`可以很明显的看出是两个完全一样的正弦波分别沿 x 轴和 Z 轴传播并且直接叠加，那么第二个。。。反正很复杂语言解释不清楚大概就是 3 个波叠加起来的，大家可以一行一行注释掉看看效果就知道了～
+
+那么如何画出一个波纹呢，首先波纹是由原点也就是`(0, 0)`点开始均匀扩散的，那么可能是一个从原点向周围扩散的正弦波。那么直觉上来说这个函数可能长这样。。
+
+```csharp
+private float Ripple (float x, float z, float t) 
+{
+    float d = Mathf.Sqrt(x * x + z * z);
+    float y = Mathf.Sin(Mathf.PI * (d - t));
+    return y;
+}
+```
+
+运行下会发现完全不像，主要是因为水波在扩散的过程中是要衰减的，正弦波完全不会，因此我们需要加上衰减的控制。既然是衰减的话显然距离越大衰减的越多喽所以我们让 y 除以 `1 + 2 * Mathf.PI * d`试一试，之所以加1是为了防止在距离原点过于近的时候结果趋近于无穷大。所以现在代码变成了这样～
+
+```csharp
+private float Ripple(float x, float z, float t)
+{
+    float d = Mathf.Sqrt(x * x + z * z);
+    float y = Mathf.Sin(Mathf.PI * (d - t));
+    y = y / (1 + 2 * Mathf.PI * d);
+    return y;
+}
+```
+
+跑起来看一下会发现。。。emmmm
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061901.png)
+
+所以我们再加上一些参数比如`_velocity`传播速度，`frequency`水波频率，`_amplitude`振幅，`_attenuation`衰减。代码如下。（这些参数并不是数值越大就直观意义上越大，虽然这样不太好但是懒得整理了。。。大家大概意思理解就好）
+
+```csharp
+private float Ripple(float x, float z, float t)
+{
+    float d = Mathf.Sqrt(x * x + z * z);
+    float y = Mathf.Sin(_frequency * Mathf.PI * (d - t / _velocity));
+    y *= 1 / (_amplitude + _attenuation * 2 * Mathf.PI * d);
+    return y;
+}
+```
+
+然后将这些参数调整到合适的值，就完成一个完美的水波了～如图所示
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061902.gif)
 
 ## PART 4 画出三维图形
+
+显然我们不能满足于此，传入 x 和 z 来计算出唯一的 y 导致了无法有两个点拥有相同的 x 和 z，这极大的限制了我们的发挥～比如说画出一个球体之类的。所以我们接下来的目标是画出真正的三维图形～
+
+在开始之前，我们首先要放弃传入 x 和 z 来计算 y 的设想，所以应该把所有的函数的返回值改成 Vector3，并且为了区分我们将函数的参数变成 u，v，t。
+
+```csharp
+public delegate Vector3 Function(float u, float v, float t);
+
+public enum GraphFunctionName {
+	Sine,
+	MultiSine,
+	Sine2D,
+	MultiSine2D,
+	Ripple,
+}
+
+public class Graph3DController : MonoBehaviour
+{
+	[Range(10, 100), SerializeField] private int _resolution;
+	[SerializeField] private GameObject _cube;
+	[SerializeField] public GraphFunctionName _function;
+
+	[SerializeField] private float _amplitude = 3;
+	[SerializeField] private float _frequency = 4;
+	[SerializeField] private float _velocity = 2;
+	[SerializeField] private float _attenuation = 6;
+
+	private List<List<Transform>> _points;
+	private float _step;
+
+	private Function[] _functions;
+
+	// Use this for initialization
+	private void Start()
+	{
+		_functions = new Function[] {SineFunction, MultiSineFunction, Sine2DFunction, MultiSine2DFunction, Ripple};
+
+		_cube.SetActive(false);
+		_points = new List<List<Transform>>();
+		_step = 2f / _resolution;
+
+		var scale = Vector3.one * _step;
+
+		for (int i = 0; i < _resolution; i++)
+		{
+			_points.Add(new List<Transform>());
+			for (int j = 0; j < _resolution; j++)
+			{
+				var point = Instantiate(_cube, transform);
+				_points[i].Add(point.transform);
+				point.transform.localScale = scale;
+				point.SetActive(true);
+			}
+		}
+
+	}
+
+	private void Update()
+	{
+		for (int i = 0; i < _points.Count; i++)
+		{
+			for (int j = 0; j < _points[i].Count; j++)
+			{
+				var u = i * _step - 1;
+				var v = j * _step - 1;
+				var point = _points[i][j];
+				point.localPosition = _functions[(int) _function](u, v, Time.time);
+			}
+		}
+	}
+
+	private Vector3 SineFunction(float u, float v, float t)
+	{
+		var x = u;
+		var y = Mathf.Sin(Mathf.PI * (u + t));
+		var z = v;
+		return new Vector3(x, y, z);
+	}
+
+	private Vector3 MultiSineFunction(float u, float v, float t)
+	{
+		var x = u;
+		float y = Mathf.Sin(Mathf.PI * (u + t));
+		y += Mathf.Sin(2f * Mathf.PI * (u + 2f * t)) / 2f;
+		y *= 2f / 3f;
+		var z = v;
+		return new Vector3(x, y, z);
+	}
+
+	private Vector3 Sine2DFunction(float u, float v, float t)
+	{
+		var x = u;
+		float y = Mathf.Sin(Mathf.PI * (u + t));
+		y += Mathf.Sin(Mathf.PI * (v + t));
+		y *= 0.5f;
+		var z = v;
+		return new Vector3(x, y, z);
+	}
+
+	private Vector3 MultiSine2DFunction(float u, float v, float t)
+	{
+		var x = u;
+		float y = 4f * Mathf.Sin(Mathf.PI * (u + v + t * 0.5f));
+		y += Mathf.Sin(Mathf.PI * (u + t));
+		y += Mathf.Sin(2f * Mathf.PI * (v + 2f * t)) * 0.5f;
+		y *= 1f / 5.5f;
+		var z = v;
+		return new Vector3(x, y, z);
+	}
+
+	private Vector3 Ripple(float u, float v, float t)
+	{
+		var x = u;
+		float d = Mathf.Sqrt(u * u + v * v);
+		float y = Mathf.Sin(_frequency * Mathf.PI * (d - t / _velocity));
+		y *= 1 / (_amplitude + _attenuation * 2 * Mathf.PI * d);
+		var z = v;
+		return new Vector3(x, y, z);
+	}
+}
+
+```
+
+
+
+
 
 ## PART 5 总结
 

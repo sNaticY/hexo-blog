@@ -84,9 +84,9 @@ deploy:
   message:
 
 math:
-  engine: 'mathjax' # or 'katex'
+  engine: 'katex' # or 'katex'
   mathjax:
-    src: custom_mathjax_source
+    src:
     config:
       # MathJax config
   katex:
