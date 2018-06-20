@@ -1,7 +1,7 @@
 ---
 title: Catlike学习笔记(1.3)-使用Unity画更复杂的3D函数图像
 draft: true
-date: 2018-06-12 16:46:27
+date: 2018-06-20 16:46:27
 tags: [unity, tutorial, basic, csharp]
 categories: Catlike学习笔记
 mathjax: true
@@ -329,14 +329,120 @@ public class Graph3DController : MonoBehaviour
 
 ```
 
+### 圆柱体
 
+那么如何组成一个圆柱体呢，首先我们知道圆柱体可以认为是由许多个圆环组成的，那么如何构成一个圆环呢？我们知道 u 的取值范围是[-1, 1]，将 u * PI 即可获得 [-PI, PI] 即刚好一个圆周的弧度，对应的坐标即是`(x = sin(PI * u), z = cos(PI * u))`，按照以上思路我们完成以下代码。然后每一个点的纵座标 y 就直接取 v 的值即可形成「每个水平的圆周上有100个点，共100个圆纵向排列组成的圆柱体」了好吧感觉表述的不是特别清楚写出来跑跑看就知道了。。。
 
+```csharp
+private Vector3 Cylinder(float u, float v, float t)
+{
+    var x = Mathf.Sin(Mathf.PI * u);
+    var y = v;
+    var z = Mathf.Cos(Mathf.PI * u);
+    return new Vector3(x, y, z);
+}
+```
 
+运行一下发现果然是一个圆柱体，如果想要控制圆柱体的半径和高直接在 x 和 z 乘以 R，y 乘以 H 即可，如下图所示。代码就不贴了大家都会自己乘～
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062001.png)
+
+那么如何让这个圆柱体动起来呢～比如说随便对 R 做一些手脚像下面这样
+
+```csharp
+private Vector3 InterestingCylinder(float u, float v, float t)
+{
+    var r = _radius * (0.8f + Mathf.Sin(Mathf.PI * (6f * u + 2f * v + t)) * 0.2f);
+    var x = r * Mathf.Sin(Mathf.PI * u);
+    var y = _height * v;
+    var z = r * Mathf.Cos(Mathf.PI * u);
+    return new Vector3(x, y, z);
+}
+```
+
+尝试改变 u 和 v 的系数可以看到很多有趣的现象哦～懒得自己写的可以打开我的「[Github Repo](https://github.com/sNaticY/CatlikePractice)」直接运行时修改 FactorU 和 FactorV 的值查看结果～最终我们可以达到类似这样的效果
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062002.gif)
+
+### 球体
+
+我们在圆柱体的基础上稍加修改就可以获得一个球体，首先，球体跟圆柱体一样也可以认为是很多半径不同的圆环组成的，那么圆环的半径呈现怎样的变化呢，我们想象球体沿经线切开后，可以观察到一圈纬线的半径和纬线的纵座标分别对应`Cos(PI / 2 * v)`和`Sin(PI / 2 * v)`，按照这个思路我们尝试写出如下代码。
+
+```csharp
+private Vector3 Sphere(float u, float v, float t)
+{
+    var r = _radius * Mathf.Cos(Mathf.PI / 2 * v);
+    var x = r * Mathf.Sin(Mathf.PI * u);
+    var y = _radius * Mathf.Sin(Mathf.PI / 2 * v);
+    var z = r * Mathf.Cos(Mathf.PI * u);
+    return new Vector3(x, y, z);
+}
+```
+
+运行一下发现完全没有问题～如图所示。。。
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062003.png)
+
+所以想要让球体动起来我们可以使用同样地思路对 r 的计算进行一点点魔改，比如说这样的一个参数`factor`：
+
+```csharp
+private Vector3 InterestingSphere(float u, float v, float t)
+{
+    var factor = 0.8f + Mathf.Sin(Mathf.PI * (_factorU * u + t)) * 0.1f;
+    factor += Mathf.Sin(Mathf.PI * (_factorV * v + t)) * 0.1f;
+    var r = factor * _radius * Mathf.Cos(Mathf.PI / 2 * v);
+    ...
+}
+		
+```
+
+调一些奇怪的参数。。。然后就出现了一坨嚅动的，。。球体。。。
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062004.gif)
+
+### 圆环体
+
+那么想象下一个圆环体和球体到底有什么区别呢，针对每左半条或者右半条经线圈，如果直接变成一个环，那么球体不就变成圆环了么。。。那么怎么变成圆环呢，我们之前提到
+
+> 一圈纬线的半径和纬线的纵座标分别对应`Cos(PI / 2 * v)`和`Sin(PI / 2 * v)
+
+所以我们把半个周期的 cos 和 sin 变成完整周期就可以了，不要除以 2 就好。。于是我们尝试着写下如下代码
+
+```csharp
+private Vector3 Torus(float u, float v, float t)
+{
+    var r = _radius * Mathf.Cos(Mathf.PI * v);
+    var x = r * Mathf.Sin(Mathf.PI * u);
+    var y = _radius * Mathf.Sin(Mathf.PI * v);
+    var z = r * Mathf.Cos(Mathf.PI * u);
+    return new Vector3(x, y, z);
+}
+```
+
+运行一下发现还是球体啊。。这是为什么呢，仔细观察发现似乎小方块比以前稀疏了，是因为半条经线被扩展到整个周期以后变成了一整圈经线，所以和对面的那半条完全重叠了。。所以怎么解决这个问题呢？就是扩大纬线圈让相对的两个半条经线不会相互重叠甚至完全分离就可以了。所以这样修改下试试
+
+```csharp
+private Vector3 Torus(float u, float v, float t)
+{
+    var r = _radius * Mathf.Cos(Mathf.PI * v) + _radius2;
+    ...
+}
+```
+
+这里之所以是加一个`_radius2`在最外面是为了达到「无论 v 如何变化都可以是的半径无条件增加 _radius2」的效果。。。运行下会发现嗯果然没问题了。。
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062005.png)
+
+所以最后也顺便让它动起来吧。。。
+
+![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062006.gif)
 
 ## PART 5 总结
 
+好吧这篇真的好长，而且写的好累并且在公式功能坏掉的情况下又很难讲清楚～大家把「[Github Repo](https://github.com/sNaticY/CatlikePractice)」下载下来自己运行稍微修改下就很容易理解了～总之我们把简单的图像扩展到了三维的图形的过程还是很有趣的～虽然不知道暂时有什么用处不过对于培养数学思维也还是挺有帮助的～好吧希望下一篇早日更新～就酱。。。
+
 ---
 
-原文链接：http://snatix.com/2018/06/12/021-mathematical-surfaces/
+原文链接：http://snatix.com/2018/06/20/021-mathematical-surfaces/
 
 本文由 sNatic 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
