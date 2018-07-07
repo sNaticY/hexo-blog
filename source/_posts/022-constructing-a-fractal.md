@@ -247,7 +247,7 @@ public class Fractal : MonoBehaviour
 
 ```
 
-运行一下发现似乎总是在原地抖动的样子。。。一定是我们速度变换的频率太高了，稍微限制一下加点随机。。
+运行一下发现似乎总是在原地抖动的样子。。。一定是我们速度变换的频率太高了所以最终结果会趋近于原地不动，稍微限制一下加点随机。。
 
  ```csharp
 public class Fractal : MonoBehaviour
@@ -265,7 +265,7 @@ public class Fractal : MonoBehaviour
 		{
 			RotateSpeed = Random.Range(-MaxRotateSpeed, MaxRotateSpeed);
 		}
-		transform.Rotate(0f, RotateSpeed * Time.deltaTime, 0f);
+		transform.Rotate(0f, 0f,  RotateSpeed * Time.deltaTime);
 	}
 
 	public void Initialize(Fractal parent, float size, Vector3 pos, Vector3 rot)
@@ -280,7 +280,7 @@ public class Fractal : MonoBehaviour
 
 哇画面真的是太诡异了。。。
 
-![animation](http://ojgpkbakj.bkt.clouddn.com/2018070704.gif)
+![animation](http://ojgpkbakj.bkt.clouddn.com/2018070705.gif)
 
 ## PART 5 总结
 
