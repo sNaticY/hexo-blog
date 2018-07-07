@@ -1,6 +1,5 @@
 ---
 title: Catlike学习笔记(1.3)-使用Unity画更复杂的3D函数图像
-draft: true
 date: 2018-06-20 16:46:27
 tags: [unity, tutorial, basic, csharp]
 categories: Catlike学习笔记
