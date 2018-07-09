@@ -444,4 +444,4 @@ private Vector3 Torus(float u, float v, float t)
 
 原文链接：http://snatix.com/2018/06/20/021-mathematical-surfaces/
 
-本文由 sNatic 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明

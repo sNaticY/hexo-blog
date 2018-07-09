@@ -79,5 +79,5 @@ categories: 快节奏多人游戏同步
 
 原文链接：http://snatix.com/2018/05/14/016-client-side-prediction-and-server-reconciliation/
 
-本文由 sNatic 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
 
