@@ -60,7 +60,7 @@ categories: 快节奏多人游戏同步
 
 ------
 
-原文链接：http://snatix.com/2018/05/07/015-client-server-game-architecture/
+原文链接：https://snatix.com/2018/05/07/015-client-server-game-architecture/
 
-本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明
 

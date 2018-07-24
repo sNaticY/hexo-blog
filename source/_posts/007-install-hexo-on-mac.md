@@ -172,6 +172,6 @@ $ hexo g && hexo d
 到此为止一个全新的带有主题的 hexo 博客已经全部搭建完毕了，最后记得将工程源码托管到 github 哦～
 
 ---
-原文链接：http://snatix.com/2017/01/08/007-install-hexo-on-mac/
+原文链接：https://snatix.com/2017/01/08/007-install-hexo-on-mac/
 
-本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明

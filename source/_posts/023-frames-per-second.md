@@ -326,6 +326,6 @@ public class FPSDisplay : MonoBehaviour
 
 ---
 
-原文链接：http://snatix.com/2018/07/17/023-frames-per-second/
+原文链接：https://snatix.com/2018/07/17/023-frames-per-second/
 
-本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明

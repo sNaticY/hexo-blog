@@ -224,6 +224,6 @@ HEAD is now at 0727b5a initial project version
 这次探索结束了，应该基本掌握 git 的正常用法了可以在写完代码以后一次一次的提交确保每次的信息都被完完整整的记录下来防止意外。发生意外以后可以顺利恢复到以前的版本。但直接回滚貌似并不是非常好的办法。git 的最精髓的部分『分支』并没有涉及到。关于分支什么的内容等待下次探索~
 
 ---
-原文链接：http://snatix.com/2014/08/21/005-start-by-git-shell/
+原文链接：https://snatix.com/2014/08/21/005-start-by-git-shell/
 
-本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明

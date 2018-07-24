@@ -167,6 +167,6 @@ thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011409.jpg
 目前为止已经尽可能的挖掘 Material 这个主题中大多数有用的好东西了，可以愉快的开始写博客了(根本不想写搭完就满足的忘记了!!!)。修改好的配置记得上传到 github 进行托管哦，不然下次再来一遍感觉很浪费时间的。。这个篇章差不多也该完结了之后想到什么再补充吧~
 
 ---
-原文链接：http://snatix.com/2017/01/14/008-customize-hexo/
+原文链接：https://snatix.com/2017/01/14/008-customize-hexo/
 
-本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明

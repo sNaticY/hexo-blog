@@ -151,7 +151,7 @@ categories: Unity通用框架工程
 
 ------
 
-原文链接：http://snatix.com/2017/03/18/013-export-ipa-without-apple-id/
+原文链接：https://snatix.com/2017/03/18/013-export-ipa-without-apple-id/
 
-本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明
 

@@ -318,6 +318,6 @@ Console.WriteLine("按任意键输出developer...");
 
 ---
 
-原文链接：http://snatix.com/2014/08/23/006-gitignore-and-git-branch/
+原文链接：https://snatix.com/2014/08/23/006-gitignore-and-git-branch/
 
-本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](http://snatix.com)』 转载请保留本申明
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明

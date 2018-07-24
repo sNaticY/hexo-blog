@@ -74,3 +74,9 @@ categories: 快节奏多人游戏同步
 以下是一些参考资料包括文章和源码之类的，可以帮助大家更方便的理解相关概念。
 
 与本文相关性最高的文章如下 [What Every Programmer Needs to Know About Game Networking](http://gafferongames.com/networking-for-game-programmers/what-every-programmer-needs-to-know-about-game-networking/)  [Latency Compensating Methods in Client/Server In-game Protocol Design and Optimization](https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization).
+
+------
+
+原文链接：https://snatix.com/2018/05/30/018-lag-compensation/
+
+本文由 [sNatic](https://github.com/sNaticY) 发布于『[大喵的新窝](https://snatix.com)』 转载请保留本申明
