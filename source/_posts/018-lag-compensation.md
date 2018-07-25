@@ -1,7 +1,7 @@
 ---
 title: 快节奏多人游戏同步(4)-延时补偿
 date: 2018-05-30 17:22:00
-tags: [multiplayer, sync, client, server]
+tags: [多人游戏, 同步, 客户端, 服务器]
 categories: 快节奏多人游戏同步
 ---
 

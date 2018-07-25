@@ -1,7 +1,7 @@
 ---
 title: 快节奏多人游戏同步(2)-客户端预测与服务器调和
 date: 2018-05-14 18:11:11
-tags: [multiplayer, sync, client, server]
+tags: [多人游戏, 同步, 客户端, 服务器]
 categories: 快节奏多人游戏同步
 ---
 

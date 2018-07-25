@@ -1,9 +1,10 @@
 ---
 title: Catlike学习笔记(1.3)-使用Unity画更复杂的3D函数图像
 date: 2018-06-20 16:46:27
-tags: [unity, tutorial, basic, csharp]
+tags: [unity, 教程, 基础, csharp]
 categories: Catlike学习笔记
 mathjax: true
+description: Catlike Coding, Unity基础教程, Unity中使用Cube绘制3D图形
 ---
 
 第三篇来了～今天去参加了 Unite 2018 Berlin，感觉就是。。。。非常困。。。回来以后稍微睡了下清醒了觉得是时候认真学习下了，不过讲的很多东西都是还没有发布或者只有 Preview 的版本，按照 Unity 的习惯肯定 Bug 多到令人发指，最近不太想折腾所以就先继续写文章把。。按照惯例奉上『[原文链接](https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/)』

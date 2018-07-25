@@ -1,8 +1,9 @@
 ---
 title: Catlike学习笔记(1.5)-使用Unity模拟原子核
 date: 2018-07-17 16:40:48
-tags: [unity, tutorial, basic, csharp]
+tags: [unity, 教程, 基础, csharp]
 categories: Catlike学习笔记
+description: Catlike Coding, Unity模拟原子核, Unity基础教程, Unity项目Fps统计
 ---
 
 周末打了两天 Celeste 蔚蓝终于打穿了，作为 IGN 2018 年首款满分神作还是很名副其实的，至少关卡设计绝对是大师级的～虽然难到爆炸但是总有一种我刚才是失误下一次一定过的错觉。。事实证明像博主这样的手残党也可以在经历十几个小时的磨难后顺利通关～总的来说还是很赞的游戏，十几个小时的游戏时间绝对值回票价~是的没错说了这么多就是为了完美的解释上周末没有更新文章的原因。。好吧总之这周来到了「[Catlike Coding 第一章](https://catlikecoding.com/unity/tutorials/basics/)」的最后一篇文章～这篇主要是讲如何使用 Profiler 查看游戏的性能以及写个小工具测量帧率～按照惯例附上『[原文链接](https://catlikecoding.com/unity/tutorials/frames-per-second/)』

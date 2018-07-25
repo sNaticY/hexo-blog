@@ -1,9 +1,10 @@
 ---
 title: Catlike学习笔记(1.4)-使用Unity构建分形
 date: 2018-07-07 19:42:15
-tags: [unity, tutorial, basic, csharp]
+tags: [unity, 教程, 基础, csharp]
 categories: Catlike学习笔记
 mathjax: true
+description: Catlike Coding, Unity制作分形, Unity基础教程, Unity中使用递归
 ---
 
 又两个星期没写文章了，主要是沉迷 [Screeps](https://store.steampowered.com/app/464350/Screeps/) 这个游戏，真的是太好玩了导致我这两个礼拜 [Github](https://github.com/sNaticY) 小绿点几乎天天刷。其实想开一个新坑大概把自己写 AI 的心路历程记录下，不过觉得因为要消耗太多时间暂时决定先不开，准备把过程中遇到的有趣的算法问题记录下就好了。言归正传今天来到「[构建分形](https://catlikecoding.com/unity/tutorials/constructing-a-fractal/)」 这篇文章。比较简单主要介绍递归的思想。我们就迅速一些，~~因为我还要继续沉迷 Screeps，~~因为还要继续学习嗯。。。再贴一次「[原文链接](https://catlikecoding.com/unity/tutorials/constructing-a-fractal/)」吧。。

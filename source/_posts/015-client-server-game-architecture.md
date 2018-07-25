@@ -1,7 +1,7 @@
 ---
 title: 快节奏多人游戏同步(1)-ClientServer架构
 date: 2018-05-07 17:31:49
-tags: [multiplayer, sync, client, server]
+tags: [多人游戏, 同步, 客户端, 服务器]
 categories: 快节奏多人游戏同步
 
 ---

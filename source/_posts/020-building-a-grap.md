@@ -1,9 +1,10 @@
 ---
 title: Catlike学习笔记(1.2)-使用Unity画函数图像
 date: 2018-06-09 20:55:42
-tags: [unity, tutorial, basic, csharp]
+tags: [unity, 教程, 基础, csharp]
 categories: Catlike学习笔记
 mathjax: true
+description: Catlike Coding, Unity使用Cube绘制函数图像, Unity基础教程
 ---
 
 『[Catlike系列教程](https://catlikecoding.com/unity/tutorials/)』第二篇来了~今天周六，~~早上~~（上午11点）醒来去超市买了一周的零食回来以后就玩了一整天游戏非常有负罪感。现在晚上九点天还亮着感觉像下午7点左右的样子好像还不是很晚。。。所以就写一点东西吧。这一篇是「[Building a Graph](https://catlikecoding.com/unity/tutorials/basics/building-a-graph/)」挑战一下试试吧。

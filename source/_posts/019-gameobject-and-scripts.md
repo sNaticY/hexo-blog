@@ -2,8 +2,9 @@
 title: Catlike学习笔记(1.1)-使用Unity实现一个钟表
 draft: false
 date: 2018-06-06 18:31:50
-tags: [unity, tutorial, basic, csharp]
+tags: [unity, 教程, 基础, csharp]
 categories: Catlike学习笔记
+description: Catlike Coding, Unity制作钟表, Unity基础教程, Unity基础GameObject使用
 ---
 
 最近发现『[Catlike系列教程](https://catlikecoding.com/unity/tutorials/)』觉得内容真的很赞，感觉有很多地方涉及到了我的知识盲点，如果真的可以照着做下来一遍的话应该收获颇丰。因为教程很长所以逐字翻译不太可能了（主要是翻译的太差）。基本上就是把实现的思路记录下来最后甩一个 「[Github Repo](https://github.com/sNaticY/CatlikePractice)」这样就可以了。理论上来说第一篇比较简单，感兴趣的同学可以移步「[原文链接](https://catlikecoding.com/unity/tutorials/basics/game-objects-and-scripts/)」

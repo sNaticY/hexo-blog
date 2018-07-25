@@ -1,10 +1,12 @@
 ---
 title: Catlike学习笔记(1.5)-使用Unity模拟原子核
 date: 2018-07-17 16:40:48
-tags: [unity, tutorial, basic, csharp]
+tags: [unity, 教程, 基础, csharp]
 categories: Catlike学习笔记
+description: 随便写点东西试试有没有用
 ---
 
+这个礼拜打算早点开始写文章
 
 <!--more-->
 
