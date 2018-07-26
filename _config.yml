@@ -83,19 +83,6 @@ deploy:
   branch: master
   message:
 
-math:
-  engine: 'katex' # or 'katex'
-  mathjax:
-    src:
-    config:
-      # MathJax config
-  katex:
-    css: custom_css_source
-    js: custom_js_source # not used
-    config:
-      # KaTeX config
-
-
 sitemap:
   path: sitemap.xml
   template: ./sitemap_template.xml
