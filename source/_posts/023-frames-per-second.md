@@ -323,7 +323,7 @@ public class FPSDisplay : MonoBehaviour
 
 ## PART 5 总结
 
-至此「[Catlike Coding 第一章](https://catlikecoding.com/unity/tutorials/basics/)」内容已经全部结束～目前为止都是非常基础的课程，博主大部分时间都是在整理文字并没有花太多时间在 Unity 和 c# 上，很多地方也都是大概看一下原作者的思路就差不多自己去实现了并没有完全照搬代码，根据自己的理解写一遍下来感觉还是收获颇丰的虽然很多地方有点懒就跳过了，尤其是关于 Profiler 的部分感觉有些枯燥而且博主水平有限就没有深入，感兴趣或者有不太清楚的同学可以自行前往『[原文链接](https://catlikecoding.com/unity/tutorials/frames-per-second/)』寻找更详细的讲解。希望下一篇文章不要再拖更两个礼拜了嗯就这样～
+至此「[Catlike Coding 第一章](https://catlikecoding.com/unity/tutorials/basics/)」内容已经全部结束～目前为止都是非常基础的课程，博主大部分时间都是在整理文字并没有花太多时间在 Unity 和 c# 上，很多地方也都是大概看一下原作者的思路就差不多自己去实现了并没有完全照搬代码，根据自己的理解写一遍下来感觉还是收获颇丰的虽然很多地方有点懒就跳过了，尤其是关于 Profiler 的部分感觉有些枯燥而且博主水平有限就没有深入，感兴趣或者有不太清楚的同学可以自行前往『[原文链接](https://catlikecoding.com/unity/tutorials/frames-per-second/)』寻找更详细的讲解。顺便补上「[Github项目地址](https://github.com/sNaticY/CatlikePractice)」，懒得码代码的同学可以直接下载下来运行哦～希望下一篇文章不要再拖更两个礼拜了嗯就这样～
 
 ---
 
