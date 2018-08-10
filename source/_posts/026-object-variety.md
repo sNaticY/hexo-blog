@@ -109,7 +109,7 @@ public class VarietyDemo : PersistableObject
 
 大家可以注意到，代码与昨天的`PersistentDemo`相差无无几，只有创建对象和加载的函数内部稍作修改，引用到了我们刚才写好的`ShapeFactory`和其函数`Get()`以及`GetRandom()`。那么此时我们运行一下会发现～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080804.png)
+![](http://ojgpkbakj.bkt.clouddn.com/2018080804.gif)
 
 虽然可以随机生成了但是我们只是保存了位置旋转和缩放信息，并没有保存具体是哪种形状，因此保存后再加载会发现所有的形状全都变成了 Cube。那么我们接下来该如何解决这个问题呢？
 
