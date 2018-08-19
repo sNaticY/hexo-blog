@@ -9,7 +9,7 @@ description: 随便写点东西试试有没有用
 
 <!--more-->
 
-## PART 1 
+## PART 1 概述
 
 ## PART 2 
 
@@ -17,9 +17,9 @@ description: 随便写点东西试试有没有用
 
 ## PART 4
 
-## PART 5
+## PART 5 总结
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/xxxx.png)
+![](http://ojgpkbakj.bkt.clouddn.com/.png)
 
 ---
 
