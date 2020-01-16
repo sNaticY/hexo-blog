@@ -57,7 +57,7 @@ public class PersistentDemo : MonoBehaviour
 
 代码特别简单大概就是在`Update()`中检测按键，然后在随机位置生成一个随机旋转和大小的方块，然后加到`ObjectList`中。写好以后我们在场景中创建一个空 GameObject 取名叫`Game`然后挂上该脚本，再把之前制作好的 Cube Prefab 拖到脚本中。运行一下看看～
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018080601.gif)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080601.gif)
 
 嗯效果不错～然后我们需要设置一个快捷键可以一键清除所有方块以便重新开始生成。那么继续添加如下代码。大概就是检测到玩家按下按键后就遍历`ObjectList`中的所有 GameObject 并 Destroy，最后清空`ObjectList`。
 
@@ -185,7 +185,7 @@ public class PresistentDemo : MonoBehaviour
 
 运行一下看看效果～在这里博主特意把按键指令也显示在屏幕左下角方便大家看清楚发生了什么～
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018080602.gif)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080602.gif)
 
 那么大家会注意到，最后按下`l`的时候，所有的小方块的旋转和缩放信息都不见了，只剩下位置还是正确的，那么讲道理我们可以继续修改代码把旋转和缩放也写到文件里面，不过这样代码会变得异常丑陋，我们稍微重构一下代码再把旋转和缩放补全吧。
 
@@ -419,11 +419,11 @@ public class PresistentDemo : PersistableObject
 
 最后把各种东西引用都拖好大概像这样～
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018080603.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080603.png)
 
 最后运行下看看～
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018080604.gif)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080604.gif)
 
 
 

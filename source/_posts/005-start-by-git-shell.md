@@ -31,7 +31,7 @@ tags: [git, windows, github]
 ### 创建新项目
 
 这个没什么可说的、博主新项目配置如下
-![配置新项目](http://ojgpkbakj.bkt.clouddn.com/2014082101.png)
+![配置新项目](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2014082101.png)
 完成以后发现`f:/dev/HelloGit`里已经创建了一些文件了，不过只有一个`Program.cs`是我们的代码文件，且内容未被修改。我们打开 git  尝试如何管理。
 
 ``` powershell

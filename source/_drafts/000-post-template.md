@@ -19,7 +19,7 @@ description: 随便写点东西试试有没有用
 
 ## PART 5 总结
 
-![](http://ojgpkbakj.bkt.clouddn.com/.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/.png)
 
 ---
 

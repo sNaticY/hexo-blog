@@ -1,7 +1,7 @@
 ---
 title: 关于没什么存在感的我
 date: 2017-01-14 15:02:03
-thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011411.jpg
+thumbnail: https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011411.jpg
 donate: true
 
 ---

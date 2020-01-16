@@ -45,15 +45,15 @@ public class Nucleon : MonoBehaviour
 
 大概就是这样～代码非常简单想必大家都看得懂就不解释了。。。接下来做两个不同颜色的 Material 以便区分质子和中子～比如像这样：
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018071701.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018071701.png)
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018071702.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018071702.png)
 
 最后把这些东西拼在一起做成 Prefab。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018071703.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018071703.png)
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018071704.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018071704.png)
 
 完成质子和中子的 Prefab 以后我们就可以生成这些质子和中子了，添加一个空 GameObject 并挂上以下代码
 
@@ -87,25 +87,25 @@ public class NucleonSpawner : MonoBehaviour
 
 最后再设置好合适的参数就可以了～比如这样：
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018071705.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018071705.png)
 
 到此为止我们的原子核生成器就完成了～运行效果如图所示：
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018071706.gif)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018071706.gif)
 
 ## PART 3 使用 Profiler 分析性能
 
 我们一边运行一边打开 Profiler 看看～发现大概是下图的样子，博主用 Macbook 做的实验因此可以看到偶尔物理处理的部分那根柱子爆表了。。。以及偶尔会出现的 EditorOverhead 之类的干扰项。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072203.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072203.png)
 
 我们可以在 Profiler 里面找到很多相关的数据但是并不十分准确～可以尝试打包以后再连接 Profiler 查看更准确的数据。要记得勾选`Development Build`和`Autoconnect Profiler`。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072204.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072204.png)
 
 运行程序再在 Profiler 里面选择正确的要调试的应用。可以看到数据不像在 Editor 里那样疯狂跳动而是变得平滑一些。当然各项消耗的占比也会略有不同，有兴趣的话还可以尝试安卓或 ios 看看是不是会有更显著的差距。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072205.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072205.png)
 
 ## PART 4 计算FPS
 
@@ -126,7 +126,7 @@ public class FPSDisplay : MonoBehaviour
 
 然后发现，我们每一帧把 int 转换成 string 都会产生一些额外的 GC 开销，
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072206.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072206.png)
 
 因此我们尝试提前建立 int 到 string 的索引，首先把帧数显示限制在 0-100 的范围内，然后从 List 中取出相应的字符串。
 
@@ -160,7 +160,7 @@ public class FPSDisplay : MonoBehaviour
 
 再次使用 Profiler 发现讨厌的 GC 消失不见了~
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072208.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072208.png)
 
 不过我们的 FPS 指示器还有另外一个缺陷，就是每帧都在跳动如果变化非常剧烈的话基本上看不清显示的是什么，尽管我们可以改成每秒计算一次之类的，不过这样就没有办法感受到 FPS 在一秒之内产生怎样的变化。因此我们的做法就是求一定过去一定帧数之内的平均值。
 
@@ -251,7 +251,7 @@ public class FPSDisplay : MonoBehaviour
 
 这样我们就可以愉快的把一定时间内最大最小以及平均 FPS 显示出来了～效果不错。。。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072209.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072209.png)
 
 最后我们为不同数值范围的 FPS 上色，使得玩家可以更直观的感受到当前 FPS 正常还是过低。首先添加一个 Struct 里面保存一个颜色以及该颜色对应最低 FPS 值。
 
@@ -315,11 +315,11 @@ public class FPSDisplay : MonoBehaviour
 
 最后再在 Inspector 里设置好各种颜色如图所示：
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072210.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072210.png)
 
 这样一个完美的 FPS 指示器就完成了～
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072211.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072211.png)
 
 ## PART 5 总结
 

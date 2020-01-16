@@ -23,7 +23,7 @@ categories: Unity通用框架工程
 
 博主使用的是 Unity5.5.0f3 的版本，其实配置起来还是比较方便的。当然前提是我们已经安装 Unity Android Support以后，切换到 Android Platform 打开 Unity Preference 以后可以看到需要配置的地方都提供了`Download`按钮，点击一下就可以跳转到具体的官网页面下载了当然如果没有「科学上网」的帮助的话很可能这些页面完全打不开或者下载速度不忍直视。
 
-![配置环境](http://ojgpkbakj.bkt.clouddn.com/2017031201.png)
+![配置环境](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017031201.png)
 
 首先我们第一步是下载 JDK，点击对应的「Download」就可以调转到 [ORACLE官网下载页](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 进行下载了。貌似没有太多复杂的东西好说，找到 JDK 也就是 Java SE Development Kit 的下载页进入以后选择好相应的平台下载，最后一路安装就没问题了，英语水平正常的话完全没有任何要注意的坑所以就不截图了。安装好一般来说路径就跟博主图里的路径是差不多的。
 
@@ -35,7 +35,7 @@ categories: Unity通用框架工程
 
  点击 Unity Prefrences 中 SDK 项后面的`Download`进入 [Android Studio 官方下载页](https://developer.android.com/sdk/index.html#Other) 直接点击下载即可
 
-![官方下载页](http://ojgpkbakj.bkt.clouddn.com/2017031202.png)
+![官方下载页](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017031202.png)
 
 这个官网还挺好看的就截一张图吧。一路安装好以后首次打开会帮你下载好最新的 Andriod SDK 和 SDK Tools 之类的东西，很方便。最后在 Unity Prefrences 中配置路径就好了就跟博主的还是差不多的路径。
 
@@ -89,11 +89,11 @@ chmod a+x android-ndk-r10e-darwin-x86_64.bin
 
 生成 APK 文件以后当然是想要迫不及待的验证一下到底对不对了，那么如何创建 Android 虚拟机呢？首先打开 Android Studio 随便新建一个工程如图所示。
 
-![Android Studio](http://ojgpkbakj.bkt.clouddn.com/2017031203.png)
+![Android Studio](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017031203.png)
 
 依次打开`Tools -> Android -> AVD Manager`，按照指引选择机型后下载对应版本的系统镜像文件并创建虚拟机，最后点击绿色箭头运行即可。
 
-![Android Studio](http://ojgpkbakj.bkt.clouddn.com/2017031204.png)
+![Android Studio](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017031204.png)
 
 最后把生成好的 APK 拖到虚拟机中即可安装运行了，随便搭一个场景写点代码试一试效果吧~
 

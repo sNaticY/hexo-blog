@@ -110,11 +110,11 @@ private void Start ()
 
 最后在场景里设置下`Scale = (0.5, 0.5, 0.5)`且`size = 0.5f Depth =  4`，再设置初始物体 Z 向上，即`(-90, 0, 0)`运行一下效果如图所示还不错～
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018070701.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018070701.png)
 
 嗯感觉还不错～再多设置一下变成 6 呢？我的 Macbook Pro 风扇开始呼呼的转。。。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018070702.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018070702.png)
 
 接下来稍微重构下代码～之前的太丑了。我们把五行长得差不多的创建子物体的代码提取一下关键参数，完整版如下：
 
@@ -219,7 +219,7 @@ public class Fractal : MonoBehaviour
 
 把机率调成 0.75 以后生成效果如下图（跟上一条随机 Mesh 一起展示了）
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018070703.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018070703.png)
 
 ### 旋转起来吧
 
@@ -281,7 +281,7 @@ public class Fractal : MonoBehaviour
 
 哇画面真的是太诡异了。。。
 
-![animation](http://ojgpkbakj.bkt.clouddn.com/2018070705.gif)
+![animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018070705.gif)
 
 ## PART 5 总结
 

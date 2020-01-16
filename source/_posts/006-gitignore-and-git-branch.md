@@ -89,7 +89,7 @@ nothing to commit, working directory clean
 
 不过貌似像博主这样后来才编辑`.gitignore`文件貌似不是很好。很容易误操作把不需要的文件加入到暂存区里，或者把不该忽略的目录全部忽略掉。于是博主发现一个很巧(tou)妙(lan)的方法就是在『GitHub for Windows』的GUI版本里创建一个新的 Repo 然后在`Git ignore`中选择“Visual studio”这样就可以使用预设的`.gitignore`文件自动忽略掉不该显示的文件类型和目录了。当然如果大家使用其他的语言的IDE什么的都可以自己选择需要的，非常方便。
 
-![创建visual Studio默认.gitgnore](http://ojgpkbakj.bkt.clouddn.com/2014082301.png)
+![创建visual Studio默认.gitgnore](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2014082301.png)
 
 ## PART 3 Git的分支系统
 
@@ -310,7 +310,7 @@ Console.WriteLine("按任意键输出developer...");
 
 总之删掉特殊的标记然后修改代码使其可以按照你的意愿运行，随后`commit`即可。最后贴一张我们的项目完全版运行结果。
 
-![HelloGit完整版运行结果](http://ojgpkbakj.bkt.clouddn.com/2014082302.png)
+![HelloGit完整版运行结果](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2014082302.png)
 
 ## PART 4 总结
 

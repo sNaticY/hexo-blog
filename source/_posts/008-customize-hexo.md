@@ -3,7 +3,7 @@ title: 重启Hexo(2)-Material深度探索
 date: 2017-01-14 12:19:49
 tags: [hexo, mac, blog]
 categories: Hexo博客重启计划
-thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011409.jpg
+thumbnail: https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011409.jpg
 
 ---
 
@@ -37,7 +37,7 @@ layout: tags
 
 完成后保存文件，并在主题的`_config.yml`文件修改`pages`项，这样可以在左侧菜单中显示一个链接跳转至标签云页面
 
-![标签云](http://ojgpkbakj.bkt.clouddn.com/2017011402.png)
+![标签云](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011402.png)
 
 ```yaml
 pages:
@@ -46,7 +46,7 @@ pages:
 
 这样标签云功能就轻松完成了，效果如图所示
 
-![标签云](http://ojgpkbakj.bkt.clouddn.com/2017011401.png)
+![标签云](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011401.png)
 
 ## PART 3 接入多说评论系统
 
@@ -66,7 +66,7 @@ comment:
 
 完成后评论系统效果如图所示
 
-![标签云](http://ojgpkbakj.bkt.clouddn.com/2017011403.png)
+![标签云](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011403.png)
 
 ## PART4 添加友情链接
 
@@ -102,7 +102,7 @@ pages:
 
 完成后的效果如下图所示，由于博主的好友较少，故借了主题作者的博客一张图：
 
-![标签云](http://ojgpkbakj.bkt.clouddn.com/2017011404.png)
+![标签云](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011404.png)
 
 感觉超棒有没有～
 
@@ -142,7 +142,7 @@ qrcode: true
 
 效果如下图所示
 
-![标签云](http://ojgpkbakj.bkt.clouddn.com/2017011405.png)
+![标签云](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011405.png)
 
 感觉是一个很有趣的小功能～
 
@@ -157,7 +157,7 @@ title: 重启Hexo(2)-Material深度探索
 date: 2017-01-14 12:19:49
 tags: [hexo, mac, blog]
 categories: Hexo博客重启计划
-thumbnail: http://ojgpkbakj.bkt.clouddn.com/2017011409.jpg
+thumbnail: https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017011409.jpg
 ```
 
 最终效果如本文题图所示。

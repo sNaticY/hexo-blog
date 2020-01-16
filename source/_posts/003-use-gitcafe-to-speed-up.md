@@ -127,15 +127,15 @@ git push origin source
 
 首先进入到 gitcafe 中你的项目首页。然后点右上的『项目管理』。进入以后在左侧点击『自定义域名』。最后添加你的域名。
 
-![自定义域名](http://ojgpkbakj.bkt.clouddn.com/2014081303.png)
+![自定义域名](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2014081303.png)
 
 进入到你的域名的dns服务商的页面。博主使用的是『[Dnspod](http://www.dnspod.cn/)』将以前的 github pages 的 CNAME 记录的线路类型设为默认，然后新添加三条 A记录，线路类型分别是『电信』『联通』『教育网』，记录值都是`117.79.146.98`。等待一会儿就可以了。
 
-![DNSpod](http://ojgpkbakj.bkt.clouddn.com/2014081301.png)
+![DNSpod](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2014081301.png)
 
 想知道是否成功可以ping一下看看
 
-![PING](http://ojgpkbakj.bkt.clouddn.com/2014081302.png)
+![PING](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2014081302.png)
 
 速度是不是快了不少呢~
 

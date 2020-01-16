@@ -95,7 +95,7 @@ namespace AssetManager
 
 制作 Prefab 的过程不多说了，大概就是随便放一张图在`Example/Textures`然后在做一个把一个带有 Sprite 的 GameObject 做成 Prefab，再把图片拖进去就行了，像是这样
 
-![制作一个Prefab](http://ojgpkbakj.bkt.clouddn.com/2017012101.png)
+![制作一个Prefab](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017012101.png)
 
 为了等一下观察生成的 Assetbundle 的大小，我特意放了一张很大的图（博主的壁纸，在 Unity 中显示大小为 2.2M ）。最后把 Prefab 放在了`Example/Prefabs`文件夹，设置`Assetbundle Name`为`prefab_1`。这样这一步就完成了。
 
@@ -103,7 +103,7 @@ namespace AssetManager
 
 第一步顺利完成的话，应该会看到菜单栏出现了名为`AssetManager`的菜单，点击`AssetManager/Build AssetBundles`，等待几秒钟就生成好了。
 
-![生成中](http://ojgpkbakj.bkt.clouddn.com/2017012102.png)
+![生成中](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017012102.png)
 
 生成好了以后应该可以在`Bundles`这个文件夹下看到四个文件，观察一下发现名为`prefab_1`的文件很大大约有1.4M，而`Bundles`这个文件却很小只有不到1K。为什么一个 Prefab 打成的 Assetbundle 会这么大呢？答案是这个 Bundle 里包含了 Prefab 依赖的全部资源，因此那张很大的壁纸也被包含在里面了。我们把两个不带`.manifest`后缀的文件上传到自己的 http 服务器上确保用浏览器可以访问到。
 
@@ -151,11 +151,11 @@ public class Example_1 : MonoBehaviour
 
 首先放一张新的图在`Examples/Textures`下随便放两张完全一样的贴图命名为`texture_2`和`texture_3`，然后设置`texture_2`的 AssetBundle Name 为`texrure_2`，`texture_3`不进行任何设置作为对照组，然后做两个 prefab 分别引用这张图片，再给 prefab 分别设置 AssetBundle Name 为 `prefab_2`和`prefab_3`。最后生成一下，好的具体步骤就不演示了~生成结果如下图所示
 
-![生成结果](http://ojgpkbakj.bkt.clouddn.com/2017012601.png)
+![生成结果](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017012601.png)
 
 大家可以观察到生成的名为`prefab_2`的文件大小为 2KB ，小于`prefab_3`的 3KB，这充分表明他所依赖的资源已经被分离出去了因此打好的 Assetbundle 大小会变小。那么如果用之前加载 prefab 的方法把 prefab_2 加载出来会发生什么事情呢？简单的修改代码尝试一下会发现，结果如图所示
 
-![丢失Sprite](http://ojgpkbakj.bkt.clouddn.com/2017012602.png)
+![丢失Sprite](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017012602.png)
 
 我们的 Sprite 丢失了~那么正确的处理方式是怎样呢？答案是要先把他所依赖的 Assetbundle 加载好。那么如何获取依赖的 Assetbundle 呢？
 

@@ -37,8 +37,8 @@ donate: true
     display: inline-block;
     width: 82px;
     height: 82px;
-    background: url("http://ojgpkbakj.bkt.clouddn.com/DonateButton.gif") no-repeat;
-    _background: url("http://ojgpkbakj.bkt.clouddn.com/DonateButton.gif") no-repeat;
+    background: url("https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/DonateButton.gif") no-repeat;
+    _background: url("https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/DonateButton.gif") no-repeat;
 
     -webkit-transition: background 0s;
     -moz-transition: background 0s;
@@ -126,8 +126,8 @@ donate: true
 # Donate
 donate:
   text: 一定会有好心人支持我的，一块两块的就好～
-  wechat: http://ojgpkbakj.bkt.clouddn.com/WechatImage.png
-  alipay: http://ojgpkbakj.bkt.clouddn.com/AlipayImage.png
+  wechat: https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/WechatImage.png
+  alipay: https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/AlipayImage.png
 ```
 
 `text`就是显示在「赏」字下面的那一行小字，然后`wechat`和`alipay`分别对应微信和支付宝的收款二维码（不要贴成付款二维码了），最好截图以后稍微放到 Photoshop 里面处理一下，毕竟美观一些大家付款的欲望也会更强的……吧。

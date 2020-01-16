@@ -161,7 +161,7 @@ $ hexo g && hexo d
 
 接下来进入你的域名 dns 服务商，以博主使用的 dnspod 为例。假设需要自定义域名为 `snatic.net` ，则添加一条 CNAME 记录，并将记录值设置为 `pages.coding.me`。如下图所示
 
-![设置cname记录](http://ojgpkbakj.bkt.clouddn.com/2017010802.png)
+![设置cname记录](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017010802.png)
 
 回到 coding 项目的设置页面，在自定义域名中输入你的域名，点击绑定即可～
 

@@ -17,7 +17,7 @@ description: Catlike Coding, Unity基础教程, Unity中使用Cube绘制3D图形
 
 那么言归正传我们本期节目的最终目标是实现作者配图中的看起来很屌的图形，像是这样的。。。
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061201.jpg)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061201.jpg)
 
 对比上一篇文章的函数图像，大概有以下几个关键点需要实现。
 
@@ -90,7 +90,7 @@ public class Graph3DController : MonoBehaviour
 
 于是我们实现了如下的效果～
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061801.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061801.gif)
 
 不过作者在原文中还添加了 Enum 然后可以不用滑杆而是改用一个下拉菜单来改变要显示的函数图像。最终效果没什么不同就不再赘述了感兴趣的同学可以自行找到『[原文链接](https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/)』查看更详细的步骤～
 
@@ -137,7 +137,7 @@ private void Update()
 
 最后再稍微修改下两个函数的参数就完成了从 2D 到 3D 的跳跃～如图所示
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061802.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061802.gif)
 
 不过我们并不应该满足于此，感觉这样其实并没有充分利用 Z 轴啊，完全就是复制了很多条曲线排在一起。所以我们新建两个这样的函数。
 
@@ -187,7 +187,7 @@ private float Ripple(float x, float z, float t)
 
 跑起来看一下会发现。。。emmmm
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061901.png)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061901.png)
 
 所以我们再加上一些参数比如`_velocity`传播速度，`frequency`水波频率，`_amplitude`振幅，`_attenuation`衰减。代码如下。（这些参数并不是数值越大就直观意义上越大，虽然这样不太好但是懒得整理了。。。大家大概意思理解就好）
 
@@ -203,7 +203,7 @@ private float Ripple(float x, float z, float t)
 
 然后将这些参数调整到合适的值，就完成一个完美的水波了～如图所示
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061902.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061902.gif)
 
 ## PART 4 画出三维图形
 
@@ -345,7 +345,7 @@ private Vector3 Cylinder(float u, float v, float t)
 
 运行一下发现果然是一个圆柱体，如果想要控制圆柱体的半径和高直接在 x 和 z 乘以 R，y 乘以 H 即可，如下图所示。代码就不贴了大家都会自己乘～
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062001.png)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018062001.png)
 
 那么如何让这个圆柱体动起来呢～比如说随便对 R 做一些手脚像下面这样
 
@@ -362,7 +362,7 @@ private Vector3 InterestingCylinder(float u, float v, float t)
 
 尝试改变 u 和 v 的系数可以看到很多有趣的现象哦～懒得自己写的可以打开我的「[Github Repo](https://github.com/sNaticY/CatlikePractice)」直接运行时修改 FactorU 和 FactorV 的值查看结果～最终我们可以达到类似这样的效果
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062002.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018062002.gif)
 
 ### 球体
 
@@ -381,7 +381,7 @@ private Vector3 Sphere(float u, float v, float t)
 
 运行一下发现完全没有问题～如图所示。。。
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062003.png)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018062003.png)
 
 所以想要让球体动起来我们可以使用同样地思路对 r 的计算进行一点点魔改，比如说这样的一个参数`factor`：
 
@@ -398,7 +398,7 @@ private Vector3 InterestingSphere(float u, float v, float t)
 
 调一些奇怪的参数。。。然后就出现了一坨嚅动的，。。球体。。。
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062004.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018062004.gif)
 
 ### 圆环体
 
@@ -431,11 +431,11 @@ private Vector3 Torus(float u, float v, float t)
 
 这里之所以是加一个`_radius2`在最外面是为了达到「无论 v 如何变化都可以是的半径无条件增加 _radius2」的效果。。。运行下会发现嗯果然没问题了。。
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062005.png)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018062005.png)
 
 所以最后也顺便让它动起来吧。。。
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018062006.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018062006.gif)
 
 ## PART 5 总结
 

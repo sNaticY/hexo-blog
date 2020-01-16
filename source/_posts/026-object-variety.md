@@ -35,7 +35,7 @@ public class Shape : PersistableObject
 
 新的`Shape`里面可以暂时什么都不需要添加等到我们需要加载和保存不同形状的时候再做。接下来我们创建一些各种形状的 Prefab 然后给他们挂上这个脚本，比如 Cube, Sphere 和 Capsule 像这样的三个 Prefab ～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080801.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080801.png)
 
 然后我们还需要一个`ShapeFactory`类从而让我们可以通过调用一个接口生成不同的形状：
 
@@ -61,9 +61,9 @@ public class ShapeFactory : ScriptableObject
 
 然后我们右键创建一个`Shape Factory`然后把我们之前创建的 Prefab 拖进去如下图～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080802.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080802.png)
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080803.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080803.png)
 
 最后我们还需要稍微对之前写的`PersistentDemo`修改一下，博主为了方便在同一个工程中可以看到每一期的代码就新建一份名为`VarietyDemo`内容如下：
 
@@ -109,7 +109,7 @@ public class VarietyDemo : PersistableObject
 
 大家可以注意到，代码与昨天的`PersistentDemo`相差无无几，只有创建对象和加载的函数内部稍作修改，引用到了我们刚才写好的`ShapeFactory`和其函数`Get()`以及`GetRandom()`。那么此时我们运行一下会发现～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080804.gif)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080804.gif)
 
 虽然可以随机生成了但是我们只是保存了位置旋转和缩放信息，并没有保存具体是哪种形状，因此保存后再加载会发现所有的形状全都变成了 Cube。那么我们接下来该如何解决这个问题呢？
 
@@ -211,7 +211,7 @@ public class VarietyDemo : PersistableObject
 
 需要注意的是读取`ShapeId`之前先检查版本号，如果是负的版本号就表示我们并没有保存形状，所以就按照默认值 0 来处理～完成后我们运行一下看看，为了验证多版本支持功能正常运作，我们可以先运行一次上一篇文章创建的场景，保存一次再在新版本中载入试试。
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080805.gif)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080805.gif)
 
 大家可以看到～我首先载入了旧版本的存档文件，生成出来的全是立方体，然后再按 C 创建了很多新的球体等其他形状的物体，保存后再加载，原来的立方体还是立方体，但是新的球体和胶囊体都保存下来了～
 
@@ -447,19 +447,19 @@ public class VarietyDemo : PersistableObject
 
 全部完成后我们尝试运行一下～因为代码跨越多个文件如果不能马上理顺其中的关系的话可以尝试自行实现一遍应该会很快理解～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080901.gif)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080901.gif)
 
 ## PART 5 开启 GPU Instancing
 
 那么开启 GPU Instancing 很简单只需要在 Material 中勾选 GPU Instancing 就可以了～就像下面这样。。
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080902.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080902.png)
 
 所以勾选了这个真的有效果么？
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080903.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080903.png)
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018080904.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018080904.png)
 
 那么我们注意到开启了 GPU Instancing 以后 Batches 从 402 降低到了 219，但事实上我们还有很多改进空间。因为默认的 Shadard Shader 中 Unity 只会将只有 Transform 组件不同的 GameObject 进行合批处理，因此改变颜色会导致该机制失效，那么我们首先创建一个支持将颜色声明为 instanced property 的 shader 使其支持不同颜色的 GameObject。代码如下~
 
@@ -545,7 +545,7 @@ public class Shape : PersistableObject
 
 最后再运行一下看看～效果显著！从 219 又降到 55 非常神奇～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018081001.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018081001.png)
 
 ## PART 6 总结
 

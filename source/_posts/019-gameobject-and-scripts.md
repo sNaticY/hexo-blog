@@ -23,7 +23,7 @@ description: Catlike Coding, Unity制作钟表, Unity基础教程, Unity基础Ga
 
 大家都是 Unity 熟手了所以具体制作流程就不讲了，博主自己也没仔细看就按照自己想法做了一个差不多的，具体思路就是多设一个层级然后父节点只旋转就可以把指针转到相应的位置而不需要同时调整 Rotation 和 Position。如果不是很懂的话可以回到「[原文地址](https://catlikecoding.com/unity/tutorials/basics/game-objects-and-scripts/)」里面有更详细的做法，或者到我的「[Github Repo](https://github.com/sNaticY/CatlikePractice)」下载下来看看。
 
-![MakeScene](http://ojgpkbakj.bkt.clouddn.com/2018060801.png)
+![MakeScene](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018060801.png)
 
 ## PART 3 写脚本控制指针
 
@@ -42,7 +42,7 @@ void Update()
 
 然而运行一下会发现时针和分针都是笔直的指向其所在的时间。。如下图所示
 
-![Clock](http://ojgpkbakj.bkt.clouddn.com/2018060802.png)
+![Clock](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018060802.png)
 
 好吧现在刚好七点钟貌似看不出来，总之就是需要在比如 6:30 的时候时针应该指向 6 和 7 之间。所以这个度数需要再加上一点偏移，变成下面这样。
 
@@ -61,7 +61,7 @@ void Update()
 
 就可以轻松实现文章里的各种平滑移动之类的～
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018060803.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018060803.gif)
 
 ## PART 4 总结
 

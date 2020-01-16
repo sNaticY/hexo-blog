@@ -56,7 +56,7 @@ public class GraphController : MonoBehaviour
 
 根据`Calc(float)`可以看出我们画出来曲线是如下函数的图像。 $y=x^2$ $f(x)=ax+b$
 
-![Graph](http://ojgpkbakj.bkt.clouddn.com/2018061001.png)
+![Graph](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061001.png)
 
 ## PART 3 给曲线上色
 
@@ -111,7 +111,7 @@ Shader "Custom/ColoredPoint" {
 
 运行效果如下~
 
-![Graph](http://ojgpkbakj.bkt.clouddn.com/2018061002.png)
+![Graph](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061002.png)
 
 ## PART 4 让曲线动起来
 
@@ -177,7 +177,7 @@ public class GraphController : MonoBehaviour
 
 运行效果如图：
 
-![Animation](http://ojgpkbakj.bkt.clouddn.com/2018061003.gif)
+![Animation](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018061003.gif)
 
 ## PART 5 总结
 

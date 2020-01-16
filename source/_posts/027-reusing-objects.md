@@ -93,13 +93,13 @@ public class ReusingDemo : PersistableObject
 
 所以大概思路就是将`E`销毁掉以后，把 List 中的最后一个也就是`I`放到`E`原来的位置，然后再把`List`的最后一个移除这样。避免了大量的对象移动操作。完成以后看看效果～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018081900.gif)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018081900.gif)
 
 ## PART 3 自动化创建和销毁对象
 
 目前为止可以一键创建和销毁对象了，但是如果我们想要持续化的反复创建和销毁的话，一直敲键盘感觉会很累的样子，所以做一个小功能来自动化的创建和销毁比较好～所以我们可能需要创建一个拉杆允许我们调整生成和销毁的速度，总之随便用 UGUI 做一下就可以了～就像这样。
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018081901.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018081901.png)
 
 然后我们需要做一些设置再添加一些代码让这个进度条工作起来。那么首先在`Game`中添加
 
@@ -115,7 +115,7 @@ public class ReusingDemo : PersistableObject
 
 我们需要设置这两个属性来接收 Slider 的值。像这样设置
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018081902.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018081902.png)
 
 除了下方的 On Value Changed 的地方设置好以外还要记得把 Max Value 改成 10，不然拖到最大每秒也只能生成一个就很慢。。。把两个 Slider 分别绑定到`CreationSpeed`和`DestructionSpeed`以后，继续添加代码：
 
@@ -156,7 +156,7 @@ public class ReusingDemo : PersistableObject
 
 大概思路。。。不用解释了吧这个代码也太简单了总之就累加到大于 1 就创建或者销毁就这样。。。那么运行一下看看效果吧～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018081903.gif)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018081903.gif)
 
 
 
@@ -164,7 +164,7 @@ public class ReusingDemo : PersistableObject
 
 目前为止我们的准备工作终于完成了。在使用对象池之前，我们先打个包然后观察一下 Profiler 看看。
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018081906.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018081906.png)
 
 跟之前一样打包并且勾选 Autoconnect Profiler 并且运行起来，把自动生成和销毁速度都调成最高，我们可以观察到每次 Instantiate 对象的时候都会导致 GC Alloc 的产生。因此我们要做的是使用对象池把要被销毁的对象保存起来以便下次再重用从而避免 GC Alloc。
 
@@ -280,7 +280,7 @@ public class ReusingDemo : PersistableObject
 
 完成以后运行一下看看，发现运行一小段时间后不再有新的对象产生，而是通过已创建对象的反复开启和关闭来模拟创建和删除对象。
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018081907.gif)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018081907.gif)
 
 ## PART 5 总结
 

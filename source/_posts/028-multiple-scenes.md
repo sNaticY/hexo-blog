@@ -116,15 +116,15 @@ public class ShapeFactory : ScriptableObject
 
 首先我们创建一个新的场景`Level 1`，创建好以后只需要把场景拖到 Hierarchy 中就可以同时编辑多个场景，如图所示。
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018090201.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018090201.png)
 
 然后我们需要删除 Level 1 中的 Main Camera 和主场景中的 Directional Light。运行一下会发现场景里的物体莫名其妙的变黑了～这主要是因为每个场景都有自己的 lighting settings，最终结果取决于我们使用哪个场景的 lighting settings。如图所示：
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018090202.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018090202.png)
 
 解决方案是右键点击 Level 1 再选择 Set Active Scene。再运行就发现恢复正常了～如图所示
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018090203.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018090203.png)
 
 ### 加载场景
 
@@ -158,11 +158,11 @@ public class MultiSceneDemo: PersistableObject
 
 为了确保光照数据被正常生成，我们需要取消 Auto Generate 选项，首先打开 Window / Lighting / Settings
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018090204.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018090204.png)
 
 然后打开 Level 1 场景，点击 Generate Lighting 后 Unity 会烘培光照数据并且保存在场景所在的文件夹中。
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018090205.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018090205.png)
 
 此时再运行会发现一切正常～
 
@@ -191,7 +191,7 @@ public class MultiSceneDemo: PersistableObject
 
 虽然目前为止看起来好像是正常工作了，但是如果我们在游戏开始之前就加载两个场景就会出现奇怪的问题，就是场景被打开两次导致光线太明亮～虽然这种情况只有 Editor 模式中会发生但是我们还是要处理一下～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018090206.png)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018090206.png)
 
 修改代码如下：
 
@@ -344,7 +344,7 @@ public class MultiSceneDemo : PersistableObject
 
 最终效果如下～首先切换到场景 1，创建一些对象以后切换到场景 2，再按下`l`读取存档，可以自动切换回场景 1 并加载对象，测试通过～
 
-![](http://ojgpkbakj.bkt.clouddn.com/2018090302.gif)
+![](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018090302.gif)
 
 ## PART 5 总结
 

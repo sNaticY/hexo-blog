@@ -22,11 +22,11 @@ description: 使用travis-ci部署Hexo博客到Github pages, 使用travis-ci部�
 
 关于 Travis-CI 具体介绍我们就不多讲了，想要了解更多的同学自行查找资料～我们首先需要进入 Travis-CI 注册帐号，一般来说只需要选择「使用 Github 帐号登录」就可以了完成所有关联了～此时大概会显示如下页面
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072802.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072802.png)
 
 选择你的 Hexo 源码托管的仓库开启并点击`Settings`，只需勾选`Build Pushed Branches`其他的取消就好，不然其他人的 Pull Request 也会导致博客更新会容易出问题。。。如图所示
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072803.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072803.png)
 
 最后在你的仓库根目录中添加`.travis.yml`文件如下
 
@@ -54,7 +54,7 @@ script:
 
 完成以后将代码 Push 到 Github 上会发现已经可以自动 Build 了，关联成功的话 Build 过程中大概会这样。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072804.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072804.png)
 
 最后 Build 成功的话会在下方的 Log 中显示，这样一来我们的 Github 就与 Travis-CI 的关联完成了～
 
@@ -82,11 +82,11 @@ after_success:
 
 首先进入 Github 点击自己的头像依次进入`Settings / Developer Settings / Personal access tokens`，点击`Generate new token`并设置名字勾选 Repo 相关权限，如图所示
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072806.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072806.png)
 
 生成后复制 Token 并打开之前的 Settings 页面找到下图所示的位置，在`Name`框中输入`REPO_TOKEN`并将 Token 粘贴到`Value`框中。然后点击 Add。
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072805.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072805.png)
 
 那么我们之前在`.travis.yml`中添加的`$REPO_TOKEN`就表示在该命令执行时自动调用此处的 Token 以确保仓库权限安全。全部完成后将`.travis.yml`提交到 Github，等待一小会儿如果 Log 最后扔显示` Done. Your build exited with 0.` 表示一切功能运行正常。打开你的博客看看，是不是已经生效了～
 
@@ -94,7 +94,7 @@ after_success:
 
 具体新建仓库，创建 Coding Pages 绑定自定义域名之类的就不说了，我们的目标是让 Travis-CI 获得推送的权限，这样就可以直接 push 到 Coding Pages 的仓库完成部署。那么如何让 Travis-CI 获得权限呢？首先打开 [Coding.net](https://coding.net/) 点击右上角头像依次进入`我的帐号 / 访问令牌`并点击`新建令牌`，勾选`project:depot`
 
-![picture](http://ojgpkbakj.bkt.clouddn.com/2018072807.png)
+![picture](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2018072807.png)
 
 生成后与之前相同的方法设置 **Environment Variables**，设置`Name`为`CODING_TOKEN`。最后再在`.travis.yml`最后添加一行：
 

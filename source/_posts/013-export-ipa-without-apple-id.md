@@ -24,25 +24,25 @@ categories: Unity通用框架工程
 
 为了给大家演示又方便打包博主就简单的制作一个 Unity 工程吧，如图所示。。
 
-![示例工程](http://ojgpkbakj.bkt.clouddn.com/2017032001.png)
+![示例工程](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032001.png)
 
 相信大家一眼就看出来了就只有一行代码把`Time.time`显示在屏幕中间。。好吧我们现在开始导出 xcode 工程。Build Settings 面板如下，点击`Build`再选一个路径就可以导出了，要注意的是`Run in Xcode as`必须要选择`Debug`才行，还有就是别忘了修改`Bundle Identifier`与证书一致，如果不知道的话可以留到 Xcode 工程中再修改。
 
-![BuildSettings](http://ojgpkbakj.bkt.clouddn.com/2017032002.png)
+![BuildSettings](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032002.png)
 
 最后打开导出的目录双击`Unity-iPhone.xcodeproj`打开 Xcode 工程，成功！
 
-![Xcode工程](http://ojgpkbakj.bkt.clouddn.com/2017032004.png)
+![Xcode工程](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032004.png)
 
 ## PART 2 导入.p12证书和.mobileprovision
 
 接下来的步骤可能不同版本的 Xcode 会不太一样，以博主的 Xcode 8.2.1 为例。打开以后如上图所示。可以看到有一个报错叫做`"Signing for "Unity-iPhone" requires a development team"`，一般来说如果自己拥有开发者帐号的话直接按照各种教程的步骤来就没问题了。但是很多时候我们并没有对应的企业开发者帐号的使用权限，只有如下图的两个文件。
 
-![证书](http://ojgpkbakj.bkt.clouddn.com/2017032005.png)
+![证书](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032005.png)
 
 关于这两个文件的作用和来源这里就不再赘述了，总之很麻烦而且博主也没有企业级开发者帐号没有亲手操作过～通常公司的平台组会为我们准备好这两个文件。首先回到 Xcode 工程中，切换到`Signing`部分，取消`Automatically manage signing`。此时会出现多个要求导入`Provisioning Profile`的部分，如下图所示。
 
-![证书](http://ojgpkbakj.bkt.clouddn.com/2017032006.png)
+![证书](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032006.png)
 
 接下来的操作很简单，只需要在每一个地方点击`Import Profile...`并选择之前的`example.mobileprovision`文件即可。如果之前没有修改`Bundle Identifier`的话，会有报错信息提示：`Provisioning profile "xxxxxx" has app ID "com.xxx.xxx", which does not match the bundle ID "com.snatic.example".` 按要求修改`Bundle Identifier`即可。
 
@@ -52,13 +52,13 @@ categories: Unity通用框架工程
 
 理论上此时我们就可以直接插上一台 iPhone 开始运行了，但是我们的目标是导出 ipa，因此按照正常流程往下走的话就是点击 Product -> Archive 然后 Export 就好了，这个流程在 Xcode 7 中完全没有问题。但在 Xcode 8 中，会做如下提示。
 
-![添加帐号](http://ojgpkbakj.bkt.clouddn.com/2017032007.png)
+![添加帐号](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032007.png)
 
 在我们没有开发者帐号以及企业子帐号的情况下这一步没办法绕过了，在 Xcode 7 中可以直接选择`Use local signing assets`的选项但是这里并不会直接出现还是需要先登录。那么我们只能剑走偏锋了。
 
 插上一台 iPhone 直接点击运行，等待编译和安装完成以后确认在设备上运行无误，然后我们就会在左侧看到 `XXXX.app`，如图所示。
 
-![导出app](http://ojgpkbakj.bkt.clouddn.com/2017032008.png)
+![导出app](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032008.png)
 
 右键点击该文件，选择`Show in Finder`即可找到我们至关重要的 app 文件。
 
@@ -70,7 +70,7 @@ categories: Unity通用框架工程
 
 打开 iTunes 切换到应用页，然后直接将上一步得到的 app 文件拖进来，就能得到如下图的应用。
 
-![导出app](http://ojgpkbakj.bkt.clouddn.com/2017032201.png)
+![导出app](https://blog-1301118239.cos.eu-frankfurt.myqcloud.com/Images/2017032201.png)
 
 右键点击应用 -> 在 Finder 中显示 就可以得到我们所需要的 ipa 文件了。
 
